@@ -10,8 +10,9 @@ import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = generateSEO({
-  title: "Inicio",
-  description: "Landing page profesional con Next.js y Material-UI",
+  title: "Fabio Fruto",
+  description:
+    "Desarrollador Full Stack | Portafolio de Proyectos y Habilidades",
   keywords: ["next.js", "react", "typescript", "material-ui", "landing page"],
 });
 

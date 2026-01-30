@@ -17,15 +17,15 @@ export function generateSEO({
   keywords = [],
   type = "website",
 }: SEOProps): Metadata {
-  const siteTitle = `${title} | MiLanding`;
+  const siteTitle = `${title} | Portafolio Profesional`;
 
   return {
     title: siteTitle,
     description,
     keywords: keywords.join(", "),
-    authors: [{ name: "MiLanding" }],
-    creator: "MiLanding",
-    publisher: "MiLanding",
+    authors: [{ name: "Fabio Fruto" }],
+    creator: "Fabio Fruto",
+    publisher: "Fabio Fruto",
 
     openGraph: {
       type,
@@ -33,7 +33,7 @@ export function generateSEO({
       url,
       title: siteTitle,
       description,
-      siteName: "MiLanding",
+      siteName: "Portafolio Profesional de Fabio Fruto",
       images: [
         {
           url: image,
@@ -42,14 +42,6 @@ export function generateSEO({
           alt: title,
         },
       ],
-    },
-
-    twitter: {
-      card: "summary_large_image",
-      title: siteTitle,
-      description,
-      images: [image],
-      creator: "@tuusuario",
     },
 
     robots: {
