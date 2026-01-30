@@ -221,7 +221,7 @@ export default function Header() {
               sx={{ m: 1 }}
             />
             <Button
-              variant="contained"
+              variant="outlined"
               sx={{
                 borderRadius: 2,
                 px: 3,

@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider>
           <Header />
-          <main style={{ minHeight: "100vh", paddingTop: "64px" }}>
+          <main style={{ minHeight: "100dvh", paddingTop: "64px" }}>
             {children}
           </main>
           <Footer />
