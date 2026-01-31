@@ -63,9 +63,9 @@ export default function Home() {
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+      <Container maxWidth="xl" sx={{ py: 8, px: 0 }}>
         <Grid container spacing={0} sx={{ minHeight: "80dvh" }}>
-          <Grid size={{ xs: 12, md: 7 }}>
+          <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, sm: 1 }}>
             <Stack
               justifyContent="center"
               alignItems="flex-start"
@@ -151,7 +151,11 @@ export default function Home() {
               </Stack>
             </Stack>
           </Grid>
-          <Grid size={{ xs: 12, md: 5 }} sx={{ overflow: "hidden" }}>
+          <Grid
+            size={{ xs: 12, md: 5 }}
+            sx={{ overflow: "hidden" }}
+            order={{ xs: 1, sm: 2 }}
+          >
             <HeroSectionImage />
           </Grid>
         </Grid>
