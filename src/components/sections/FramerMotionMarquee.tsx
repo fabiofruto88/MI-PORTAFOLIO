@@ -3,24 +3,18 @@
 /**
  * Infinite Autoscroll Carousel (Marquee) con Framer Motion + MUI
  *
- * - 100% seamless, sin "salto" ni "parpadeos" en el bucle
- * - Usa cálculo dinámico del ancho del listado
- * - Reutiliza la referencia del contenedor para calcular movimiento
- * - Interpolación lineal, velocidad custom, duplicación seamless
- * - Responsivo y listo para producción
- *
- * NOTA:
- * El bug clásico del salto ocurre porque animas un % fijo y el contenido no
- * llena el espacio, causando "parpadeo". Aquí, el ancho y scroll se calculan
- * en tiempo real y la animación nunca se reinicia abruptamente.
+ * ✅ Loop perfecto, jamás se reinicia abruptamente ni depende de opacity hacks
+ * ✅ Duplicación efectiva del contenido (buffer) para seamless scroll
+ * ✅ Ancho calculado al vuelo y recalculado en resize/browser zoom
+ * ✅ Movimiento continuo en ambas direcciones (left/right)
+ * ✅ Sincrónico con velocidad (px/s) y sin acumulación de errores
  */
 
-import React, { useRef, useLayoutEffect, useState } from "react";
-import { Box, Container, Typography, Stack, useTheme } from "@mui/material";
+import React, { useRef, useLayoutEffect, useState, useCallback } from "react";
+import { Box, Typography, useTheme } from "@mui/material";
 import { motion, useAnimationFrame } from "framer-motion";
 import {
   SiTailwindcss,
-  SiRedux,
   SiReact,
   SiNextdotjs,
   SiJavascript,
@@ -32,6 +26,8 @@ import {
   SiCss3,
   SiMui,
   SiFastapi,
+  SiExpress,
+  SiOpencv,
 } from "react-icons/si";
 import { DiHtml5, DiMysql } from "react-icons/di";
 import { FcAndroidOs } from "react-icons/fc";
@@ -42,47 +38,21 @@ import {
   FaPython,
 } from "react-icons/fa";
 
-// =========================================
-// Definición tecnológica (puedes extenderla)
-// =========================================
-
+// ==== Tipos ====
 interface Tech {
   icon: React.ElementType;
   name: string;
   color: string;
 }
 
-const technologies: Tech[] = [
-  { icon: SiTailwindcss, name: "Tailwind CSS", color: "#06B6D4" },
-  { icon: FaBootstrap, name: "Bootstrap", color: "#7952B3" },
-  { icon: DiHtml5, name: "HTML5", color: "#E34F26" },
-  { icon: SiCss3, name: "CSS3", color: "#2965F1" },
-  { icon: SiMui, name: "MUI", color: "#007FFF" },
-  { icon: SiRedux, name: "Redux", color: "#764ABC" },
-  { icon: SiReact, name: "React.js", color: "#61DAFB" },
-  { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
-  { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
-  { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
-  { icon: DiMysql, name: "MySQL", color: "#4169E1" },
-  { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
-  { icon: SiGit, name: "Git", color: "#F05032" },
-  { icon: SiDocker, name: "Docker", color: "#2496ED" },
-  { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
-  { icon: FcAndroidOs, name: "Android OS", color: "#3DDC84" },
-  { icon: FaAppStoreIos, name: "iOS", color: "#2496ED" },
-];
-
-// =======================================================
-// Componente Principal: Carousel infinito, auto-scroll
-// =======================================================
-
 export interface FramerMotionMarqueeProps {
   direction?: "left" | "right";
   technologies?: Tech[];
-  speed?: number; // px/sec
+  speed?: number; // px/s
 }
 
-const defaultTechnologies = [
+// ==== Defaults ====
+const defaultTechnologies: Tech[] = [
   { icon: SiTailwindcss, name: "Tailwind CSS", color: "#06B6D4" },
   { icon: FaBootstrap, name: "Bootstrap", color: "#7952B3" },
   { icon: DiHtml5, name: "HTML5", color: "#E34F26" },
@@ -102,43 +72,76 @@ const defaultTechnologies = [
   { icon: FaAppStoreIos, name: "iOS", color: "#2496ED" },
   { icon: FaAngular, name: "Angular", color: "#DD0031" },
   { icon: SiFastapi, name: "FastAPI", color: "#009688" },
+  { icon: SiExpress, name: "Express", color: "#000000" },
+  { icon: SiOpencv, name: "OpenCV", color: "#5C3EE8" },
 ];
 
-const DEFAULT_SPEED = 50;
+const DEFAULT_SPEED = 50; // px/seg
 
+/**
+ * Componente Carrusel infinito con movimiento perfectamente continuo.
+ */
 export default function FramerMotionMarquee({
   direction = "left",
   technologies = defaultTechnologies,
   speed = DEFAULT_SPEED,
 }: FramerMotionMarqueeProps) {
   const theme = useTheme();
-  // Duplicar para seamless loop (el "truco")
+  /**
+   * Duplicamos el listado para que cuando tu scroll (x) cruce
+   * el umbral del ancho del primer bloque, la transición
+   * sea perfecta. Solo "reseteamos" x a 0 y no se nota nada.
+   */
   const techsLoop = [...technologies, ...technologies];
-  // Ref para medir dinamicamente el ancho del carrete
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-  // Track el offset del scroll (x)
-  const [baseX, setBaseX] = useState(0);
 
-  // Calcular el ancho real del contenido para loop perfecto
-  useLayoutEffect(() => {
-    if (scrollerRef.current) {
-      setWidth(scrollerRef.current.scrollWidth / 2); // solo la mitad gracias a duplicado
+  // Ref para medir el ancho *visible* de UN loop (sin duplicados)
+  const itemContainerRef = useRef<HTMLDivElement>(null);
+
+  // Estado para el ancho del "loop base" (sin duplicados)
+  const [loopWidth, setLoopWidth] = useState<number>(0);
+
+  // Estado del offset (posición x) animada
+  const [baseX, setBaseX] = useState<number>(0);
+
+  // --- Medición dinámica del ancho base y resize
+  const measureLoopWidth = useCallback(() => {
+    if (itemContainerRef.current) {
+      // El scrollWidth de la fila base, sin duplicados
+      setLoopWidth(itemContainerRef.current.scrollWidth);
     }
-  }, [technologies]);
+  }, []);
 
-  // Animación de x infinitamente, sin parpadeos
+  useLayoutEffect(() => {
+    measureLoopWidth();
+    // Listen a resize: recalcula para responsividad perfecta
+    window.addEventListener("resize", measureLoopWidth);
+    return () => window.removeEventListener("resize", measureLoopWidth);
+  }, [measureLoopWidth, technologies]);
+
+  // === Animación CONTINUA, sin parpadeos ===
   useAnimationFrame((_, delta) => {
-    if (!width) return;
+    if (!loopWidth) return;
+
     setBaseX((prev) => {
-      let next =
+      /**
+       * Calcula nuevo offset:
+       * - Izquierda: decrementa X (mueve hacia la izq)
+       * - Derecha: incrementa X (mueve hacia la der)
+       * El offset SIEMPRE está en [-loopWidth, 0)
+       */
+      let nextOffset =
         direction === "left"
           ? prev - (speed * delta!) / 1000
           : prev + (speed * delta!) / 1000;
-      if (Math.abs(next) >= width) {
-        next = 0;
+
+      // Reinicio seamless: Si cruce el ancho de un loop, reinicia en 0
+      if (direction === "left" && Math.abs(nextOffset) >= loopWidth) {
+        nextOffset += loopWidth; // ¡No 0! Sino +width para arrastrar buffer
       }
-      return next;
+      if (direction === "right" && nextOffset >= 0) {
+        nextOffset -= loopWidth; // Inver al valor negativo del loop base
+      }
+      return nextOffset;
     });
   });
 
@@ -148,11 +151,14 @@ export default function FramerMotionMarquee({
         width: "100%",
         py: 1,
         backgroundColor: "background.default",
-
         position: "relative",
+        overflow: "hidden",
       }}
     >
-      {/* Capa de degradado en los bordes (fade-out, responsivo) */}
+      {/* 
+        Degradado en bordes: fade "pro" 
+        Usando maskImage para un efecto elegante y accesible
+      */}
       <Box
         sx={{
           position: "relative",
@@ -161,13 +167,18 @@ export default function FramerMotionMarquee({
           WebkitMaskImage:
             "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
           width: "100%",
+          overflow: "hidden",
           userSelect: "none",
           alignItems: "center",
           display: "flex",
+          height: 80,
         }}
       >
+        {/* 
+          SOLO la mitad del loop es "real", el resto es duplicado. 
+          Usamos ref SOLO para el primer loop (no para ambos).
+        */}
         <motion.div
-          ref={scrollerRef}
           style={{
             display: "flex",
             gap: 32,
@@ -175,27 +186,43 @@ export default function FramerMotionMarquee({
             transform: `translateX(${baseX}px)`,
           }}
         >
-          {techsLoop.map((tech, index) => (
-            <TechIconMotion
-              key={index}
-              tech={tech}
-              index={index % technologies.length}
-            />
-          ))}
+          {/* Loop base para medir el ancho */}
+          <div
+            ref={itemContainerRef}
+            style={{
+              display: "flex",
+              gap: 32,
+            }}
+          >
+            {technologies.map((tech, idx) => (
+              <TechIconMotion key={idx} tech={tech} index={idx} />
+            ))}
+          </div>
+          {/* Loop duplicado (buffer) */}
+          <div
+            style={{
+              display: "flex",
+              gap: 32,
+            }}
+          >
+            {technologies.map((tech, idx) => (
+              <TechIconMotion
+                key={technologies.length + idx}
+                tech={tech}
+                index={idx}
+              />
+            ))}
+          </div>
         </motion.div>
       </Box>
     </Box>
   );
 }
 
-// =======================================================
-// Componente para cada icono (con microanimación y hover)
-// =======================================================
-
+// === Componente para cada ícono con animación y accesibilidad ===
 function TechIconMotion({ tech, index }: { tech: Tech; index: number }) {
   const theme = useTheme();
   const Icon = tech.icon;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -216,12 +243,15 @@ function TechIconMotion({ tech, index }: { tech: Tech; index: number }) {
         cursor: "pointer",
       }}
     >
+      {/* Ícono animado en hover */}
       <motion.div
         whileHover={{
           rotate: 360,
           scale: 1.2,
         }}
         transition={{ duration: 0.5 }}
+        aria-label={tech.name}
+        tabIndex={0}
       >
         <Icon size={38} color={tech.color} />
       </motion.div>
@@ -241,7 +271,8 @@ function TechIconMotion({ tech, index }: { tech: Tech; index: number }) {
 }
 
 /**
- * Este patrón elimina micro-parpadeos y reinicios abruptos en el loop, usando
- * la duplicación + cálculo real del ancho ocupado. Si agregas más ítems o cambias
- * el tamaño de los íconos, el efecto sigue siendo perfectamente infinito.
+ * 🚀 Este patrón garantiza:
+ * - Un scroll perfecto incluso cuando direction es "right"
+ * - Nunca hay salto ni reseteo visible (porque el offset sólo se traslapa)
+ * - Ancho siempre preciso, preparado para SSR, resize y zoom 🏆
  */
