@@ -30,10 +30,17 @@ import {
   SiDocker,
   SiNodedotjs,
   SiCss3,
+  SiMui,
+  SiFastapi,
 } from "react-icons/si";
 import { DiHtml5, DiMysql } from "react-icons/di";
 import { FcAndroidOs } from "react-icons/fc";
-import { FaAppStoreIos, FaBootstrap } from "react-icons/fa";
+import {
+  FaAngular,
+  FaAppStoreIos,
+  FaBootstrap,
+  FaPython,
+} from "react-icons/fa";
 
 // =========================================
 // Definición tecnológica (puedes extenderla)
@@ -50,7 +57,7 @@ const technologies: Tech[] = [
   { icon: FaBootstrap, name: "Bootstrap", color: "#7952B3" },
   { icon: DiHtml5, name: "HTML5", color: "#E34F26" },
   { icon: SiCss3, name: "CSS3", color: "#2965F1" },
-
+  { icon: SiMui, name: "MUI", color: "#007FFF" },
   { icon: SiRedux, name: "Redux", color: "#764ABC" },
   { icon: SiReact, name: "React.js", color: "#61DAFB" },
   { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
@@ -69,36 +76,65 @@ const technologies: Tech[] = [
 // Componente Principal: Carousel infinito, auto-scroll
 // =======================================================
 
-export default function FramerMotionMarquee() {
-  const theme = useTheme();
+export interface FramerMotionMarqueeProps {
+  direction?: "left" | "right";
+  technologies?: Tech[];
+  speed?: number; // px/sec
+}
 
+const defaultTechnologies = [
+  { icon: SiTailwindcss, name: "Tailwind CSS", color: "#06B6D4" },
+  { icon: FaBootstrap, name: "Bootstrap", color: "#7952B3" },
+  { icon: DiHtml5, name: "HTML5", color: "#E34F26" },
+  { icon: SiCss3, name: "CSS3", color: "#2965F1" },
+  { icon: SiMui, name: "MUI", color: "#007FFF" },
+  { icon: SiReact, name: "React.js", color: "#61DAFB" },
+  { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
+  { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
+  { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+  { icon: FaPython, name: "Python", color: "#3776AB" },
+  { icon: DiMysql, name: "MySQL", color: "#4169E1" },
+  { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+  { icon: SiGit, name: "Git", color: "#F05032" },
+  { icon: SiDocker, name: "Docker", color: "#2496ED" },
+  { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+  { icon: FcAndroidOs, name: "Android OS", color: "#3DDC84" },
+  { icon: FaAppStoreIos, name: "iOS", color: "#2496ED" },
+  { icon: FaAngular, name: "Angular", color: "#DD0031" },
+  { icon: SiFastapi, name: "FastAPI", color: "#009688" },
+];
+
+const DEFAULT_SPEED = 50;
+
+export default function FramerMotionMarquee({
+  direction = "left",
+  technologies = defaultTechnologies,
+  speed = DEFAULT_SPEED,
+}: FramerMotionMarqueeProps) {
+  const theme = useTheme();
   // Duplicar para seamless loop (el "truco")
   const techsLoop = [...technologies, ...technologies];
-
   // Ref para medir dinamicamente el ancho del carrete
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
-
   // Track el offset del scroll (x)
   const [baseX, setBaseX] = useState(0);
-
-  // Velocidad en px/segundo, puedes modificar para tu gusto
-  const SPEED = 50; // px/sec
 
   // Calcular el ancho real del contenido para loop perfecto
   useLayoutEffect(() => {
     if (scrollerRef.current) {
       setWidth(scrollerRef.current.scrollWidth / 2); // solo la mitad gracias a duplicado
     }
-  }, []);
+  }, [technologies]);
 
   // Animación de x infinitamente, sin parpadeos
   useAnimationFrame((_, delta) => {
     if (!width) return;
-    // Delta es ms
     setBaseX((prev) => {
-      let next = prev - (SPEED * delta!) / 1000;
-      // Cuando termina el primer loop (al final del 1er set de logos), resetea, seamless
+      let next =
+        direction === "left"
+          ? prev - (speed * delta!) / 1000
+          : prev + (speed * delta!) / 1000;
       if (Math.abs(next) >= width) {
         next = 0;
       }
@@ -110,49 +146,44 @@ export default function FramerMotionMarquee() {
     <Box
       sx={{
         width: "100%",
-        py: 8,
+        py: 1,
         backgroundColor: "background.default",
-        overflow: "hidden",
+
         position: "relative",
       }}
     >
-      <Container maxWidth="xl">
-        {/* Capa de degradado en los bordes (fade-out, responsivo) */}
-        <Box
-          sx={{
-            position: "relative",
-            overflow: "hidden",
-            maskImage:
-              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            WebkitMaskImage:
-              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            /*   bgcolor: theme.palette.background.default, */
-            minHeight: 110,
-            width: "100%",
-            userSelect: "none",
-            alignItems: "center",
+      {/* Capa de degradado en los bordes (fade-out, responsivo) */}
+      <Box
+        sx={{
+          position: "relative",
+          maskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          width: "100%",
+          userSelect: "none",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
+        <motion.div
+          ref={scrollerRef}
+          style={{
             display: "flex",
+            gap: 32,
+            willChange: "transform",
+            transform: `translateX(${baseX}px)`,
           }}
         >
-          <motion.div
-            ref={scrollerRef}
-            style={{
-              display: "flex",
-              gap: 32,
-              willChange: "transform",
-              transform: `translateX(${baseX}px)`,
-            }}
-          >
-            {techsLoop.map((tech, index) => (
-              <TechIconMotion
-                key={index}
-                tech={tech}
-                index={index % technologies.length}
-              />
-            ))}
-          </motion.div>
-        </Box>
-      </Container>
+          {techsLoop.map((tech, index) => (
+            <TechIconMotion
+              key={index}
+              tech={tech}
+              index={index % technologies.length}
+            />
+          ))}
+        </motion.div>
+      </Box>
     </Box>
   );
 }
@@ -170,11 +201,6 @@ function TechIconMotion({ tech, index }: { tech: Tech; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.08 }}
-      whileHover={{
-        scale: 1.1,
-        y: -10,
-        transition: { duration: 0.2 },
-      }}
       style={{
         flexShrink: 0,
         padding: 12,

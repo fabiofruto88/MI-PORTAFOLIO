@@ -11,6 +11,7 @@ import {
 import { FaGithub } from "react-icons/fa";
 import { BsInstagram, BsLinkedin } from "react-icons/bs";
 import FramerMotionMarquee from "@/components/sections/FramerMotionMarquee";
+import { SiReact } from "react-icons/si";
 
 export default function Home() {
   const theme = useTheme();
@@ -18,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Container maxWidth="xl" sx={{ py: 8 }}>
-        <Grid container spacing={0}>
+        <Grid container spacing={0} sx={{ minHeight: "80dvh" }}>
           <Grid size={{ xs: 12, md: 7 }}>
             <Stack
               justifyContent="center"
@@ -110,6 +111,11 @@ export default function Home() {
           </Grid>
         </Grid>
         <FramerMotionMarquee />
+        <FramerMotionMarquee
+          direction="right"
+          speed={50}
+          technologies={[{ icon: SiReact, name: "React", color: "#61DAFB" }]}
+        />
       </Container>
     </>
   );
