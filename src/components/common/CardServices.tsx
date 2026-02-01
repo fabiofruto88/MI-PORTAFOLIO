@@ -56,7 +56,9 @@ const CardServices: React.FC<CardServicesProps> = ({
         "&:hover, &:focus-visible": {
           boxShadow: "0 16px 48px 0 rgba(34, 106, 237, 0.12)",
           transform: "translateY(-2px) scale(1.012)",
+          border: `1px solid ${theme.palette.primary.main}`,
         },
+        border: `1px solid ${theme.palette.divider}`,
         ...sx,
       }}
     >
