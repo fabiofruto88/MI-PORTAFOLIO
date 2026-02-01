@@ -35,6 +35,9 @@ import {
   FaBootstrap,
   FaPython,
 } from "react-icons/fa";
+import CardServices from "@/components/common/CardServices";
+import { MdRocketLaunch, MdShoppingCart, MdWeb } from "react-icons/md";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 
 export default function Home() {
   const theme = useTheme();
@@ -63,7 +66,7 @@ export default function Home() {
 
   return (
     <>
-      <Container maxWidth="xl" sx={{ py: 8, px: 0 }}>
+      <Container maxWidth="xl" sx={{ py: 8, px: 1.5 }}>
         <Grid container spacing={{ xs: 1, md: 0 }} sx={{ minHeight: "80dvh" }}>
           <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, sm: 1 }}>
             <Stack
@@ -184,6 +187,79 @@ export default function Home() {
           </Typography>
           <FramerMotionMarquee technologies={techStack1} />
           <FramerMotionMarquee direction="right" technologies={techStack2} />
+        </Stack>
+
+        <Stack
+          p={1}
+          my={{ xs: 3, md: 1 }}
+          sx={{
+            minHeight: "80dvh",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <Typography
+            variant="body2"
+            sx={{
+              color: "primary.main",
+              letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
+              fontWeight: 700, // Negrita
+              fontSize: 14, // Tamaño personalizado
+              textTransform: "uppercase", // Mayúsculas
+              display: "block", // Ocupa todo el ancho
+            }}
+          >
+            Servicios de Desarrollo
+          </Typography>
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 700,
+            }}
+          >
+            Ingeniería de software a medida
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{
+              fontSize: { xs: "1rem", md: "1.125rem" },
+              mb: 6,
+              color: theme.palette.text.secondary,
+            }}
+          >
+            Soluciones digitales robustas construidas con las tecnologías más
+            modernas y estándares de la industria.
+          </Typography>
+          <Grid container spacing={3}>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+              <CardServices
+                icon={MdWeb}
+                title="Desarrollo Web"
+                description="Sistemas modernos y escalables con React y Next.js, enfocados en performance y SEO técnico."
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+              <CardServices
+                icon={MdRocketLaunch}
+                title="Landing Pages"
+                description="Landing pages optimizadas para conversión, con tiempos de carga ultra rápidos y diseño premium."
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+              <CardServices
+                icon={HiOutlineDevicePhoneMobile}
+                title="Apps Android & iOS"
+                description="Desarrollo nativo y multiplataforma con React Native, Kotlin y Swift para alto rendimiento."
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}>
+              <CardServices
+                icon={MdShoppingCart}
+                title="Servicios E-commerce"
+                description="Tiendas online completas, pasarelas de pago seguras y gestión avanzada de inventario."
+              />
+            </Grid>
+          </Grid>
         </Stack>
       </Container>
     </>
