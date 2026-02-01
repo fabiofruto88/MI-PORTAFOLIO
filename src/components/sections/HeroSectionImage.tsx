@@ -73,7 +73,6 @@ export default function HeroSectionImage() {
           />
         </Box>
 
-        {/* Badge IEEE (abajo derecha) */}
         <Box
           sx={{
             position: "absolute",
@@ -83,8 +82,8 @@ export default function HeroSectionImage() {
           }}
         >
           <BadgeCard
-            title="IUB"
-            subtitle="INVESTIGADOR"
+            title="Docente"
+            subtitle="IUB en territorios"
             icon={
               <BsPcDisplay
                 style={{ color: theme.palette.primary.main, fontSize: 28 }}
