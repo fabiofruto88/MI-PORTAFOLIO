@@ -64,7 +64,7 @@ export default function Home() {
   return (
     <>
       <Container maxWidth="xl" sx={{ py: 8, px: 0 }}>
-        <Grid container spacing={0} sx={{ minHeight: "80dvh" }}>
+        <Grid container spacing={{ xs: 1, md: 0 }} sx={{ minHeight: "80dvh" }}>
           <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, sm: 1 }}>
             <Stack
               justifyContent="center"

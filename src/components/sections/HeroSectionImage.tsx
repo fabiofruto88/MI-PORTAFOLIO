@@ -12,7 +12,7 @@ export default function HeroSectionImage() {
     <Stack
       sx={{
         width: "100%",
-        minHeight: 600,
+        minHeight: { xs: 300, md: 600 },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
