@@ -110,7 +110,7 @@ export default function Home() {
                 variant="body1"
                 sx={{
                   fontSize: { xs: "1rem", md: "1.125rem" },
-                  mb: 2,
+                  mb: 5,
                   color: theme.palette.text.secondary,
                   textAlign: "justify",
                 }}
