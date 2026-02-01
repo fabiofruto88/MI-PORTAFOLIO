@@ -212,7 +212,7 @@ export default function Home() {
             Servicios de Desarrollo
           </Typography>
           <Typography
-            variant="h3"
+            variant="h4"
             sx={{
               fontWeight: 700,
             }}
