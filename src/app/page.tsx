@@ -26,6 +26,7 @@ import {
   SiFastapi,
   SiExpress,
   SiOpencv,
+  SiN8N,
 } from "react-icons/si";
 import { DiHtml5, DiMysql } from "react-icons/di";
 import { FcAndroidOs } from "react-icons/fc";
@@ -51,6 +52,7 @@ export default function Home() {
     { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
     { icon: FaPython, name: "Python", color: "#3776AB" },
     { icon: FaAppStoreIos, name: "iOS", color: "#2965F1" },
+    { icon: FaBootstrap, name: "Bootstrap", color: "#7952B3" },
   ];
   const techStack2 = [
     { icon: SiN8N, name: "n8n", color: "#eb5175" },
