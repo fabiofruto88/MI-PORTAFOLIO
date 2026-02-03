@@ -39,6 +39,10 @@ import {
 import CardServices from "@/components/common/CardServices";
 import { MdRocketLaunch, MdShoppingCart, MdWeb } from "react-icons/md";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import {
+  ExperienceTimeline,
+  ExperienceTimelineItem,
+} from "@/components/common/ExperienceTimeline";
 
 export default function Home() {
   const theme = useTheme();
@@ -66,7 +70,38 @@ export default function Home() {
     { icon: FcAndroidOs, name: "Android OS", color: "#3DDC84" },
     { icon: SiOpencv, name: "OpenCV", color: "#5C3EE8" },
   ];
-
+  const experienceItems: ExperienceTimelineItem[] = [
+    {
+      id: "exp-1",
+      company: "Institución Universitaria de Barranquilla en Territorios",
+      role: "Docente Catedrático – Fundamentos de Programación",
+      period: "ENERO 2026 — PRESENTE",
+      bullets: [
+        "Impartición de Fundamentos de Programación enfocada en análisis de problemas, diseño de algoritmos y estructuras de control.",
+        "Formación orientada a la automatización de tareas y optimización de procesos, fortaleciendo habilidades clave para la ingeniería.",
+      ],
+    },
+    {
+      id: "exp-2",
+      company: "CCorbit S.A.S",
+      role: "Desarrollador Frontend",
+      period: "MAYO 2024 — OCTUBRE 2025",
+      bullets: [
+        "Desarrollo de aplicaciones web y móviles con React.js, Next.js y React Native, implementando SSR, SSG y optimización de rendimiento.",
+        "Construcción de componentes reutilizables con Material UI y participación en proyectos publicados en Google Play Store y App Store.",
+      ],
+    },
+    {
+      id: "exp-3",
+      company: "REDSIS",
+      role: "Técnico en Sistemas",
+      period: "FEBRERO 2023 — JULIO 2023",
+      bullets: [
+        "Diagnóstico y reparación de dispositivos electrónicos (escáneres POS, impresoras térmicas, computadores).",
+        "Instalación de sistemas operativos y gestión de inventario de repuestos mediante software RedsisLAB.",
+      ],
+    },
+  ];
   return (
     <>
       <Container maxWidth="xl" sx={{ py: 8, px: 1.5 }}>
@@ -85,22 +120,6 @@ export default function Home() {
               >
                 Fabio Fruto Jimenez
               </Typography>
-              {/*  <Typography
-                variant="h1"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
-                Desarrollo de apps{" "}
-                <Typography
-                  component="span"
-                  color="primary"
-                  variant="h1"
-                  sx={{ fontStyle: "oblique" }}
-                >
-                  impactantes
-                </Typography>
-              </Typography> */}
               <Typography
                 variant="h2"
                 sx={{
@@ -263,6 +282,30 @@ export default function Home() {
               />
             </Grid>
           </Grid>
+        </Stack>
+        <Stack minHeight="100dvh" spacing={2} alignItems="center" p={1}>
+          <Typography
+            variant="body2"
+            sx={{
+              color: "primary.main",
+              letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
+              fontWeight: 700, // Negrita
+              fontSize: 14, // Tamaño personalizado
+              textTransform: "uppercase", // Mayúsculas
+              display: "block", // Ocupa todo el ancho
+            }}
+          >
+            Trayectoria
+          </Typography>
+          <Typography
+            variant="h4"
+            sx={{
+              fontWeight: 700,
+            }}
+          >
+            Experiencia Profesional
+          </Typography>
+          <ExperienceTimeline items={experienceItems} />
         </Stack>
       </Container>
     </>
