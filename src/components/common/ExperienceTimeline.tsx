@@ -9,7 +9,7 @@
  *
  * ✅ MISMO NOMBRE: ExperienceTimeline
  * ✅ MISMAS interfaces públicas
- * ✅ Animación: se dispara 1 vez al entrar a la sección (stagger reciente->antigua)
+ * ✅ Animación: cada hito se revela al entrar al viewport y se reinicia cuando la sección sale completa
  * ✅ Sin animaciones izquierda-derecha (solo fade + y leve)
  * ===================================================================================== */
 
@@ -44,38 +44,13 @@ const getSideByIndex = (index: number): Side =>
   index % 2 === 0 ? "left" : "right";
 
 /**
- * Motion wrappers:
- * - MotionBox para filas (grid)
- * - MotionStack para el contenedor con spacing (aquí está el fix del typing)
+ * Motion wrapper para cada fila de la línea de tiempo.
  */
 const MotionBox = motion(Box);
-
-/**
- * ✅ FIX: motion(Stack) tipado correctamente.
- * Stack es OverridableComponent y Framer Motion necesita un componente que reciba ref.
- * Con forwardRef lo dejamos estable en TS strict.
- */
-const MotionStack = motion(
-  React.forwardRef<HTMLDivElement, React.ComponentProps<typeof Stack>>(
-    function MotionStackBase(props, ref) {
-      return <Stack ref={ref} {...props} />;
-    },
-  ),
-);
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 6 },
   visible: { opacity: 1, y: 0 },
-};
-
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
-    },
-  },
 };
 
 export function ExperienceTimeline({
@@ -86,7 +61,33 @@ export function ExperienceTimeline({
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
   const sectionRef = React.useRef<HTMLElement | null>(null);
-  const isSectionInView = useInView(sectionRef, { once: true, amount: 0.25 });
+  const isSectionInView = useInView(sectionRef, {
+    once: false,
+    amount: 0.1,
+  });
+
+  const [visibleItems, setVisibleItems] = React.useState<
+    Record<string, boolean>
+  >({});
+  const prevSectionInView = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!isSectionInView && prevSectionInView.current) {
+      setVisibleItems({});
+    }
+
+    prevSectionInView.current = isSectionInView;
+  }, [isSectionInView]);
+
+  const handleItemVisible = React.useCallback((id: string) => {
+    setVisibleItems((prev) => {
+      if (prev[id]) {
+        return prev;
+      }
+
+      return { ...prev, [id]: true };
+    });
+  }, []);
 
   return (
     <Box
@@ -114,14 +115,7 @@ export function ExperienceTimeline({
             },
           }}
         >
-          {/* ✅ Aquí ya NO usamos component={Stack}; usamos MotionStack directo */}
-          <MotionStack
-            spacing={{ xs: 4, md: 6 }}
-            variants={containerVariants}
-            initial="hidden"
-            animate={isSectionInView ? "visible" : "hidden"}
-            sx={{ position: "relative" }}
-          >
+          <Stack spacing={{ xs: 4, md: 6 }} sx={{ position: "relative" }}>
             {items.map((item, index) => (
               <TimelineRow
                 key={item.id}
@@ -129,9 +123,11 @@ export function ExperienceTimeline({
                 index={index}
                 isMdUp={isMdUp}
                 side={getSideByIndex(index)}
+                onInView={handleItemVisible}
+                isVisible={Boolean(visibleItems[item.id])}
               />
             ))}
-          </MotionStack>
+          </Stack>
         </Box>
       </Container>
     </Box>
@@ -143,21 +139,43 @@ function TimelineRow({
   index,
   isMdUp,
   side,
+  onInView,
+  isVisible,
 }: {
   item: ExperienceTimelineItem;
   index: number;
   isMdUp: boolean;
   side: Side;
+  onInView: (id: string) => void;
+  isVisible: boolean;
 }): React.ReactElement {
   const headerAlign: "left" | "right" = side === "left" ? "right" : "left";
   const cardAlign: "left" | "right" = side === "left" ? "left" : "right";
 
   const rowTransition = { duration: 0.35, ease: "easeOut" as const };
 
+  const rowRef = React.useRef<HTMLDivElement | null>(null);
+  const isRowInView = useInView(rowRef, {
+    once: false,
+    amount: isMdUp ? 0.55 : 0.35,
+    margin: "-15% 0px",
+  });
+
+  React.useEffect(() => {
+    if (isRowInView) {
+      onInView(item.id);
+    }
+  }, [isRowInView, item.id, onInView]);
+
+  const motionState = isVisible ? "visible" : "hidden";
+
   if (isMdUp) {
     return (
       <MotionBox
+        ref={rowRef}
         variants={itemVariants}
+        initial="hidden"
+        animate={motionState}
         transition={rowTransition}
         sx={{
           position: "relative",
@@ -199,7 +217,10 @@ function TimelineRow({
 
   return (
     <MotionBox
+      ref={rowRef}
       variants={itemVariants}
+      initial="hidden"
+      animate={motionState}
       transition={rowTransition}
       sx={{ position: "relative", pl: 5 }}
       aria-label={`${item.company} - ${item.role}`}

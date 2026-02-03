@@ -73,6 +73,16 @@ export default function Home() {
   const experienceItems: ExperienceTimelineItem[] = [
     {
       id: "exp-1",
+      company: "Freelance",
+      role: "Desarrollador Frontend & Mobile",
+      period: "2022 — PRESENTE",
+      bullets: [
+        "Desarrollo de soluciones web y móviles personalizadas con React.js, Next.js y React Native para diversos clientes y proyectos académicos.",
+        "Implementación de arquitecturas escalables, integración de APIs REST y optimización de rendimiento en aplicaciones multiplataforma.",
+      ],
+    },
+    {
+      id: "exp-2",
       company: "Institución Universitaria de Barranquilla en Territorios",
       role: "Docente Catedrático – Fundamentos de Programación",
       period: "ENERO 2026 — PRESENTE",
@@ -82,7 +92,7 @@ export default function Home() {
       ],
     },
     {
-      id: "exp-2",
+      id: "exp-3",
       company: "CCorbit S.A.S",
       role: "Desarrollador Frontend",
       period: "MAYO 2024 — OCTUBRE 2025",
@@ -92,7 +102,7 @@ export default function Home() {
       ],
     },
     {
-      id: "exp-3",
+      id: "exp-4",
       company: "REDSIS",
       role: "Técnico en Sistemas",
       period: "FEBRERO 2023 — JULIO 2023",
