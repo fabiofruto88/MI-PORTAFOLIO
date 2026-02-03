@@ -1,6 +1,7 @@
 "use client";
 import HeroSectionImage from "@/components/sections/HeroSectionImage";
 import {
+  Box,
   Container,
   Grid,
   IconButton,
@@ -112,89 +113,149 @@ export default function Home() {
       ],
     },
   ];
+  const educationItems: ExperienceTimelineItem[] = [
+    {
+      id: "edu-1",
+      company: "Universidad de Barranquilla (IUB)",
+      role: "Tecnología en Gestión de Sistemas Informáticos",
+      period: "2023 — 2025",
+      bullets: [
+        "Programa con Acreditación de Alta Calidad.",
+        "Formación especializada en diseño, desarrollo, configuración y administración de sistemas de información y computación bajo criterios de productividad y desarrollo sostenible.",
+        "Competencias en arquitectura de software, bases de datos, desarrollo web/móvil, redes de computadores y gestión de proyectos tecnológicos.",
+        "Participación activa en semilleros",
+      ],
+    },
+    {
+      id: "edu-2",
+      company: "Universidad de Barranquilla (IUB)",
+      role: "Técnico Profesional en Mantenimiento de Sistemas Informáticos",
+      period: "2020 — 2023",
+      bullets: [
+        "Programa con Acreditación de Alta Calidad, formando técnicos profesionales capacitados en instalación, programación y mantenimiento de sistemas informáticos.",
+        "Desarrollo de competencias en soporte técnico, administración de bases de datos, montaje y mantenimiento de redes de computadores.",
+        "Formación práctica en diagnóstico y solución de problemas en infraestructura tecnológica empresarial.",
+      ],
+    },
+    {
+      id: "edu-3",
+      company: "SENA - Servicio Nacional de Aprendizaje",
+      role: "Técnico en Sistemas",
+      period: "2020",
+      bullets: [
+        "Formación técnica profesional en tecnologías de la información y comunicaciones.",
+        "Desarrollo de habilidades prácticas en mantenimiento de equipos y soporte técnico.",
+      ],
+    },
+    {
+      id: "edu-4",
+      company: "Institución Técnica Microempresarial de Soledad (INTEMISOL)",
+      role: "Bachiller Técnico",
+      period: "2020",
+      bullets: [
+        "Educación media con énfasis técnico empresarial.",
+        "Formación integral que combinó competencias académicas con habilidades técnicas y emprendimiento.",
+      ],
+    },
+  ];
   return (
     <>
-      <Container maxWidth="xl" sx={{ py: 8, px: 1.5 }}>
-        <Grid container spacing={{ xs: 1, md: 0 }} sx={{ minHeight: "80dvh" }}>
-          <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, sm: 1 }}>
-            <Stack
-              justifyContent="center"
-              alignItems="flex-start"
-              sx={{ height: "100%", p: 3 }}
-            >
-              <Typography
-                variant="h1"
-                sx={{
-                  fontWeight: 700,
-                }}
-              >
-                Fabio Fruto Jimenez
-              </Typography>
-              <Typography
-                variant="h2"
-                sx={{
-                  fontWeight: 500,
-                  fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem" },
-                  mb: 2,
-                }}
-              >
-                Desarrollador Software | Creando soluciones digitales
-                innovadoras
-              </Typography>{" "}
-              <Typography
-                variant="body1"
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.125rem" },
-                  mb: 5,
-                  color: theme.palette.text.secondary,
-                  textAlign: "justify",
-                }}
-              >
-                Convierto tu visión en aplicaciones web y móviles funcionales.
-                Especializado en React y React Native para desarrollar productos
-                digitales escalables que tu negocio necesita. Desde prototipos
-                hasta apps publicadas: arquitecturas limpias, código mantenible,
-                proyectos con impacto real
-              </Typography>
+      {/*     <Container maxWidth="xl" sx={{ py: 8, px: 1.5 }}> */}
+      {/*sobre mi  */}
+      <Stack
+        sx={{ minHeight: "80dvh", bgcolor: theme.palette.background.paper }}
+      >
+        <Container maxWidth="xl">
+          <Grid container spacing={{ xs: 1, md: 0 }}>
+            <Grid size={{ xs: 12, md: 7 }} order={{ xs: 2, sm: 1 }}>
               <Stack
-                direction="row"
-                spacing={5}
                 justifyContent="center"
-                justifyItems="center"
-                alignItems="center"
-                display="flex"
-                width="100%"
+                alignItems="flex-start"
+                sx={{ height: "100%", p: 3 }}
               >
-                <IconButton
-                  sx={{ width: 50, height: 50, p: 0 }}
-                  href="https://github.com/fabiofruto88"
+                <Typography
+                  variant="h1"
+                  sx={{
+                    fontWeight: 700,
+                  }}
                 >
-                  <FaGithub size={50} color={theme.palette.text.primary} />
-                </IconButton>
-                <IconButton
-                  sx={{ width: 50, height: 50, p: 0 }}
-                  href="https://www.linkedin.com/in/fabio-fruto-jimenez/"
+                  Fabio Fruto Jimenez
+                </Typography>
+                <Typography
+                  variant="h2"
+                  sx={{
+                    fontWeight: 500,
+                    fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem" },
+                    mb: 2,
+                  }}
                 >
-                  <BsLinkedin size={50} color={theme.palette.text.primary} />
-                </IconButton>
-                <IconButton
-                  sx={{ width: 50, height: 50, p: 0 }}
-                  href="https://www.instagram.com/fabiofruto8/"
+                  Desarrollador Software | Creando soluciones digitales
+                  innovadoras
+                </Typography>{" "}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontSize: { xs: "1rem", md: "1.125rem" },
+                    mb: 5,
+                    color: theme.palette.text.secondary,
+                    textAlign: "justify",
+                  }}
                 >
-                  <BsInstagram size={50} color={theme.palette.text.primary} />
-                </IconButton>
+                  Convierto tu visión en aplicaciones web y móviles funcionales.
+                  Especializado en React y React Native para desarrollar
+                  productos digitales escalables que tu negocio necesita. Desde
+                  prototipos hasta apps publicadas: arquitecturas limpias,
+                  código mantenible, proyectos con impacto real
+                </Typography>
+                <Stack
+                  direction="row"
+                  spacing={5}
+                  justifyContent="center"
+                  justifyItems="center"
+                  alignItems="center"
+                  display="flex"
+                  width="100%"
+                >
+                  <IconButton
+                    sx={{ width: 50, height: 50, p: 0 }}
+                    href="https://github.com/fabiofruto88"
+                  >
+                    <FaGithub size={50} color={theme.palette.text.primary} />
+                  </IconButton>
+                  <IconButton
+                    sx={{ width: 50, height: 50, p: 0 }}
+                    href="https://www.linkedin.com/in/fabio-fruto-jimenez/"
+                  >
+                    <BsLinkedin size={50} color={theme.palette.text.primary} />
+                  </IconButton>
+                  <IconButton
+                    sx={{ width: 50, height: 50, p: 0 }}
+                    href="https://www.instagram.com/fabiofruto8/"
+                  >
+                    <BsInstagram size={50} color={theme.palette.text.primary} />
+                  </IconButton>
+                </Stack>
               </Stack>
-            </Stack>
+            </Grid>
+            <Grid
+              size={{ xs: 12, md: 5 }}
+              sx={{ overflow: "hidden" }}
+              order={{ xs: 1, sm: 2 }}
+            >
+              <HeroSectionImage />
+            </Grid>
           </Grid>
-          <Grid
-            size={{ xs: 12, md: 5 }}
-            sx={{ overflow: "hidden" }}
-            order={{ xs: 1, sm: 2 }}
-          >
-            <HeroSectionImage />
-          </Grid>
-        </Grid>
-        <Stack>
+        </Container>
+      </Stack>
+      {/* habilidades */}
+      <Stack
+        sx={{
+          minHeight: "50dvh",
+          justifyContent: "center",
+          alignContent: "center",
+        }}
+      >
+        <Container maxWidth="xl">
           <Typography
             variant="h4"
             sx={{
@@ -219,17 +280,20 @@ export default function Home() {
           </Typography>
           <FramerMotionMarquee technologies={techStack1} />
           <FramerMotionMarquee direction="right" technologies={techStack2} />
-        </Stack>
-
-        <Stack
-          p={1}
-          my={{ xs: 3, md: 1 }}
-          sx={{
-            minHeight: "80dvh",
-            justifyContent: "center",
-            alignContent: "center",
-          }}
-        >
+        </Container>
+      </Stack>
+      {/* servicios */}
+      <Stack
+        p={1}
+        my={{ xs: 3, md: 1 }}
+        sx={{
+          minHeight: "80dvh",
+          justifyContent: "center",
+          alignContent: "center",
+          bgcolor: theme.palette.background.paper,
+        }}
+      >
+        <Container maxWidth="xl" sx={{}}>
           <Typography
             variant="body2"
             sx={{
@@ -292,32 +356,58 @@ export default function Home() {
               />
             </Grid>
           </Grid>
-        </Stack>
-        <Stack minHeight="100dvh" spacing={2} alignItems="center" p={1}>
-          <Typography
-            variant="body2"
-            sx={{
-              color: "primary.main",
-              letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
-              fontWeight: 700, // Negrita
-              fontSize: 14, // Tamaño personalizado
-              textTransform: "uppercase", // Mayúsculas
-              display: "block", // Ocupa todo el ancho
-            }}
-          >
-            Trayectoria
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: 700,
-            }}
-          >
-            Experiencia Profesional
-          </Typography>
-          <ExperienceTimeline items={experienceItems} />
-        </Stack>
-      </Container>
+        </Container>
+      </Stack>
+      {/* experiencia */}
+      <Stack minHeight="100dvh" spacing={2} alignItems="center" px={1} py={4}>
+        <Typography
+          variant="body2"
+          sx={{
+            color: "primary.main",
+            letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
+            fontWeight: 700, // Negrita
+            fontSize: 14, // Tamaño personalizado
+            textTransform: "uppercase", // Mayúsculas
+            display: "block", // Ocupa todo el ancho
+          }}
+        >
+          Trayectoria
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            fontSize: { xs: 22, sm: 24, md: 26 },
+          }}
+        >
+          Experiencia Profesional
+        </Typography>
+        <ExperienceTimeline items={experienceItems} />
+        <Typography
+          variant="body2"
+          sx={{
+            color: "primary.main",
+            letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
+            fontWeight: 700, // Negrita
+            fontSize: 14, // Tamaño personalizado
+            textTransform: "uppercase", // Mayúsculas
+            display: "block", // Ocupa todo el ancho
+          }}
+        >
+          Trayectoria
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            fontSize: { xs: 22, sm: 24, md: 26 },
+          }}
+        >
+          Educación
+        </Typography>
+        <ExperienceTimeline items={educationItems} />
+      </Stack>
+      {/*    </Container> */}
     </>
   );
 }
