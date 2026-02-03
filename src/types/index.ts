@@ -34,3 +34,8 @@ export interface FAQItem {
   question: string;
   answer: string;
 }
+export interface Tech {
+  icon: React.ElementType;
+  name: string;
+  color: string;
+}

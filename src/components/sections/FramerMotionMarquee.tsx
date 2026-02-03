@@ -37,13 +37,9 @@ import {
   FaBootstrap,
   FaPython,
 } from "react-icons/fa";
+import { Tech } from "@/types";
 
 // ==== Tipos ====
-interface Tech {
-  icon: React.ElementType;
-  name: string;
-  color: string;
-}
 
 export interface FramerMotionMarqueeProps {
   direction?: "left" | "right";

@@ -28,6 +28,7 @@ import {
   SiExpress,
   SiOpencv,
   SiN8N,
+  SiVite,
 } from "react-icons/si";
 import { DiHtml5, DiMysql } from "react-icons/di";
 import { FcAndroidOs } from "react-icons/fc";
@@ -44,6 +45,7 @@ import {
   ExperienceTimeline,
   ExperienceTimelineItem,
 } from "@/components/common/ExperienceTimeline";
+import ProjectCard from "@/components/common/ProjectCard";
 
 export default function Home() {
   const theme = useTheme();
@@ -406,6 +408,72 @@ export default function Home() {
           Educación
         </Typography>
         <ExperienceTimeline items={educationItems} />
+      </Stack>
+      {/* Proyectos */}
+      <Stack
+        minHeight="60dvh"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          py: 4,
+        }}
+      >
+        <Container maxWidth="xl">
+          <Grid container spacing={0}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/unisecure-home.webp" // Make sure you have a screenshot of Unisecure here
+                roleChip="FULL STACK"
+                domainChip="IA"
+                badgeText="UniSecure"
+                title="Sistema de Control de Acceso Universitario"
+                description={
+                  <>
+                    Plataforma integral de seguridad con{" "}
+                    <strong>Reconocimiento Facial y LPR</strong> (Lectura de
+                    Placas). Gestión de roles (Estudiantes, Profesores, Admin) y
+                    reportes de ingreso en tiempo real.
+                  </>
+                }
+                technologies={[
+                  { icon: SiReact, name: "React", color: "#61DAFB" },
+                  { icon: SiFastapi, name: "FastAPI", color: "#009688" },
+                  { icon: SiMui, name: "Material UI", color: "#007FFF" },
+                  // { icon: SiPython, name: "Python", color: "#3776AB" } // Optional if you want to emphasize Python
+                ]}
+                demoUrl="https://unisecure-front.vercel.app/"
+                githubUrl="https://github.com/fabiofruto88/unisecure-front" // Update with your actual repo
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/medisecure.webp" // Usa una imagen relevante del demo de MediSecure
+                roleChip="FRONTEND"
+                domainChip="IA"
+                badgeText="MediSecure"
+                title="Sistema de Control de Acceso Hospitalario"
+                description={
+                  <>
+                    Plataforma avanzada de seguridad para hospitales con{" "}
+                    <strong>Reconocimiento Facial y LPR</strong> (Lectura de
+                    Placas Vehiculares). Protección de áreas críticas, gestión
+                    de roles (médicos, personal, visitantes) y monitoreo de
+                    accesos en tiempo real.
+                  </>
+                }
+                technologies={[
+                  { icon: SiReact, name: "React", color: "#61DAFB" },
+                  { icon: SiMui, name: "Material UI", color: "#007FFF" },
+                  { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+                  // Agrega aquí el backend si aplica, por ejemplo: { icon: SiFastapi, name: "FastAPI", color: "#009688" }
+                ]}
+                demoUrl="https://medisecure-front-gq4c.vercel.app/" // Actualiza con la URL de demo si tienes una
+                githubUrl="https://github.com/fabiofruto88/medisecure-front" // Actualiza con tu repo real
+              />
+            </Grid>
+          </Grid>
+        </Container>
       </Stack>
       {/*    </Container> */}
     </>
