@@ -88,7 +88,7 @@ const CardServices: React.FC<CardServicesProps> = ({
         component="h3"
         sx={{
           fontWeight: 700,
-          fontSize: 22,
+          fontSize: 18,
           color: theme.palette.text.primary,
           mb: 1.5,
           textAlign: "left",

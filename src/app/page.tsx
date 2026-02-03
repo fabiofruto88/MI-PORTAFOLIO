@@ -252,7 +252,7 @@ export default function Home() {
               <CardServices
                 icon={HiOutlineDevicePhoneMobile}
                 title="Apps Android & iOS"
-                description="Desarrollo nativo y multiplataforma con React Native, Kotlin y Swift para alto rendimiento."
+                description="Desarrollo nativo y multiplataforma con React Native"
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 3 }}>
