@@ -68,7 +68,6 @@ export default function ProjectCard(
       tabIndex={0}
       sx={{
         width: "100%",
-        maxWidth: 380,
         borderRadius: 2,
         overflow: "hidden",
         border: `1px solid ${theme.palette.divider}`,
@@ -81,6 +80,9 @@ export default function ProjectCard(
           transform: "translateY(-2px)",
           boxShadow: `0 16px 40px ${alpha(theme.palette.common.black, 0.14)}`,
           borderColor: theme.palette.primary.main,
+          "& img": {
+            transform: "scale(1.08)",
+          },
         },
         ...sx,
       }}
@@ -90,6 +92,7 @@ export default function ProjectCard(
           position: "relative",
           background: headerBg,
           height: "clamp(140px, 22vw, 190px)",
+          overflow: "hidden",
         }}
       >
         {imageUrl && (
@@ -98,7 +101,11 @@ export default function ProjectCard(
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            style={{ objectFit: "cover", zIndex: 0 }}
+            style={{
+              objectFit: "cover",
+              zIndex: 0,
+              transition: "transform 0.4s ease-out",
+            }}
           />
         )}
         <Box

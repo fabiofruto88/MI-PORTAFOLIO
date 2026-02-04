@@ -29,6 +29,12 @@ import {
   SiOpencv,
   SiN8N,
   SiVite,
+  SiPython,
+  SiReacthookform,
+  SiPostgresql,
+  SiOpenai,
+  SiGooglecloud,
+  SiTelegram,
 } from "react-icons/si";
 import { DiHtml5, DiMysql } from "react-icons/di";
 import { FcAndroidOs } from "react-icons/fc";
@@ -417,10 +423,33 @@ export default function Home() {
           justifyContent: "center",
           alignItems: "center",
           py: 4,
+          bgcolor: theme.palette.background.paper,
         }}
       >
+        <Typography
+          variant="body2"
+          sx={{
+            color: "primary.main",
+            letterSpacing: "0.11em", // Espaciado entre letras (mayúsculas)
+            fontWeight: 700, // Negrita
+            fontSize: 14, // Tamaño personalizado
+            textTransform: "uppercase", // Mayúsculas
+            display: "block", // Ocupa todo el ancho
+          }}
+        >
+          Portafolio Seleccionado
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 700,
+            mb: 5,
+          }}
+        >
+          Proyectos personales
+        </Typography>
         <Container maxWidth="xl">
-          <Grid container spacing={0}>
+          <Grid container spacing={{ xs: 1, md: 2 }}>
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
               <ProjectCard
                 imageUrl="/images/unisecure-home.webp" // Make sure you have a screenshot of Unisecure here
@@ -440,10 +469,10 @@ export default function Home() {
                   { icon: SiReact, name: "React", color: "#61DAFB" },
                   { icon: SiFastapi, name: "FastAPI", color: "#009688" },
                   { icon: SiMui, name: "Material UI", color: "#007FFF" },
-                  // { icon: SiPython, name: "Python", color: "#3776AB" } // Optional if you want to emphasize Python
+                  { icon: SiPython, name: "Python", color: "#3776AB" },
                 ]}
                 demoUrl="https://unisecure-front.vercel.app/"
-                githubUrl="https://github.com/fabiofruto88/unisecure-front" // Update with your actual repo
+                githubUrl="https://github.com/fabiofruto88/unisecure"
               />
             </Grid>
             <Grid size={{ xs: 12, sm: 6, md: 4 }}>
@@ -466,10 +495,129 @@ export default function Home() {
                   { icon: SiReact, name: "React", color: "#61DAFB" },
                   { icon: SiMui, name: "Material UI", color: "#007FFF" },
                   { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
-                  // Agrega aquí el backend si aplica, por ejemplo: { icon: SiFastapi, name: "FastAPI", color: "#009688" }
+                  { icon: SiPython, name: "Python", color: "#3776AB" },
                 ]}
                 demoUrl="https://medisecure-front-gq4c.vercel.app/" // Actualiza con la URL de demo si tienes una
                 githubUrl="https://github.com/fabiofruto88/medisecure-front" // Actualiza con tu repo real
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/umami.webp"
+                roleChip="FRONTEND"
+                domainChip="MARKETING"
+                badgeText="Umami Landing"
+                title="Landing Page para Marca Gastronómica"
+                description={
+                  <>
+                    Landing moderna enfocada en{" "}
+                    <strong>presentación de marca</strong> y{" "}
+                    <strong>conversión</strong>, con secciones de propuesta de
+                    valor, servicios/menú, testimonios y llamados a la acción.
+                    Diseño <strong>responsive</strong> y UI consistente para una
+                    experiencia rápida y clara.
+                  </>
+                }
+                technologies={[
+                  { icon: SiReact, name: "React", color: "#61DAFB" },
+                  { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+                  { icon: SiMui, name: "Material UI", color: "#007FFF" },
+                ]}
+                demoUrl="https://umami-beta-rust-21.vercel.app/"
+                githubUrl="https://github.com/fabiofruto88/umami-landing-front"
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/vaova.webp"
+                roleChip="FRONTEND"
+                domainChip="TECHNICAL TEST"
+                badgeText="VAOVA"
+                title="Gestión de Hoteles (Prueba Técnica)"
+                description={
+                  <>
+                    Prueba técnica desarrollada para{" "}
+                    <strong>demostrar habilidades Frontend</strong> y{" "}
+                    <strong>buenas prácticas</strong> (arquitectura escalable,
+                    tipado con TypeScript y componentes reutilizables). Incluye{" "}
+                    <strong>auth con roles</strong>, CRUD de
+                    hoteles/habitaciones y galería, con UI{" "}
+                    <strong>responsive</strong> en Material UI y persistencia
+                    simulada en LocalStorage.
+                  </>
+                }
+                technologies={[
+                  { icon: SiReact, name: "React", color: "#61DAFB" },
+                  { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+                  { icon: SiMui, name: "Material UI", color: "#007FFF" },
+                  {
+                    icon: SiReacthookform,
+                    name: "Hook Form",
+                    color: "#EC5990",
+                  },
+                ]}
+                demoUrl="https://vaova-prueba-tecnica-ts.vercel.app/"
+                githubUrl="https://github.com/fabiofruto88/vaova-prueba-tecnica-ts"
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/quiz.webp"
+                roleChip="FRONTEND"
+                domainChip="Web APP"
+                badgeText="QUIZ APP"
+                title="Quiz Interactivo Personalizable"
+                description={
+                  <>
+                    Aplicación de <strong>quiz interactivo</strong> donde puedes
+                    practicar y subir tus propias preguntas en formato JSON.
+                    Incluye <strong>temporizador</strong>,{" "}
+                    <strong>historial de resultados</strong>, opción de{" "}
+                    <strong>saltar preguntas</strong> y{" "}
+                    <strong>UI moderna</strong> con Material UI. Permite
+                    personalizar el número de preguntas y practicar con
+                    diferentes temáticas.
+                  </>
+                }
+                technologies={[
+                  { icon: SiReact, name: "React", color: "#61DAFB" },
+                  { icon: SiMui, name: "Material UI", color: "#007FFF" },
+                  { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
+                ]}
+                demoUrl="https://quiz-ten-taupe.vercel.app/"
+                githubUrl="https://github.com/fabiofruto88/quiz"
+              />
+            </Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+              <ProjectCard
+                imageUrl="/images/rag.webp"
+                roleChip="N8N"
+                domainChip="Automatización"
+                badgeText="RAG BOT"
+                title="RAG en n8n: Bot de Telegram con PGVector + Google Drive"
+                description={
+                  <>
+                    Bot en <strong>n8n</strong> con <strong>RAG</strong> para
+                    responder en <strong>Telegram</strong> usando documentos de{" "}
+                    <strong>Google Drive</strong>. Procesa y vectoriza archivos
+                    con <strong>OpenAI Embeddings</strong> en{" "}
+                    <strong>Postgres (PGVector)</strong>, incluye deduplicación
+                    y sanitización HTML.
+                  </>
+                }
+                technologies={[
+                  { icon: SiN8N, name: "n8n", color: "#EA4B71" },
+                  { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+                  { icon: SiOpenai, name: "OpenAI", color: "#000000" },
+
+                  {
+                    icon: SiTelegram,
+                    name: "Telegram Bot API",
+                    color: "#26A5E4",
+                  },
+                ]}
+                demoUrl="https://youtu.be/Yrtntm9BK0g?si=pxkBieC9oRgya4VS"
+                githubUrl="https://github.com/fabiofruto88/prueba-tenica-n8n-2025"
               />
             </Grid>
           </Grid>

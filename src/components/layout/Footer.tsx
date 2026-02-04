@@ -1,194 +1,186 @@
 // src/layouts/components/Footer.tsx
 "use client";
+
 import {
   Box,
-  Button,
   Container,
+  Grid,
   IconButton,
   Link,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
-import { use, useState } from "react";
+import NextLink from "next/link";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+} from "react-icons/fa";
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" mt={1}>
+    <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link href="#">footer base ts </Link>
-      {new Date().getFullYear()}
+      {new Date().getFullYear()}{" "}
+      <Link component={NextLink} color="inherit" href="/">
+        Fabio Fruto
+      </Link>
+      . Todos los derechos reservados.
     </Typography>
   );
 }
 
-export default function Footer() {
-  const [email, setEmail] = useState("");
+const socialLinks = [
+  {
+    label: "GitHub",
+    icon: <FaGithub size={32} />,
+    href: "https://github.com/fabiofruto88",
+  },
+  {
+    label: "LinkedIn",
+    icon: <FaLinkedin size={32} />,
+    href: "https://www.linkedin.com/in/fabio-fruto-jimenez/",
+  },
+  {
+    label: "Instagram",
+    icon: <FaInstagram size={32} />,
+    href: "https://www.instagram.com/fabiofruto8/",
+  },
+  {
+    label: "TikTok",
+    icon: <FaTiktok size={32} />,
+    href: "https://www.tiktok.com/@koodi0808",
+  },
+];
 
+export default function Footer() {
   return (
-    <Container
+    <Box
       component="footer"
       sx={{
-        minWidth: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: { xs: 4, sm: 8 },
-        p: { xs: 4, sm: 8, md: 10 },
-        textAlign: { sm: "center", md: "left" },
+        bgcolor: "background.paper",
         borderTop: "1px solid",
         borderColor: "divider",
-        mt: "auto", // Empuja el footer al fondo
-        bgcolor: "background.paper",
+        py: { xs: 4, md: 6 },
+        mt: "auto",
+        width: "100%",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
-          width: "100%",
-          justifyContent: "space-between",
-        }}
-      >
-        {/* Newsletter */}
-        <Box
-          component="form"
-          /*        onSubmit={handleSubmit} */
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 4,
-            minWidth: { xs: "100%", sm: "60%" },
-          }}
+      <Container maxWidth={false} sx={{ px: { xs: 4, md: 8 } }}>
+        <Grid
+          container
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <Box sx={{ width: { xs: "100%", sm: "60%" } }}>
-            <Box sx={{ ml: "-15px" }}>
-              {/*  <img src={logo} style={logoStyle} alt="Logo" /> */}
-            </Box>
-            <Typography variant="body2" fontWeight={600} gutterBottom>
-              footer base ts
-            </Typography>
-            <Typography variant="body2" color="text.secondary" mb={2}>
-              ¿De qué se trata?, ¡pide más info a tu correo!
-            </Typography>
-            <Stack direction="row" spacing={1} useFlexGap>
-              <TextField
-                size="small"
-                variant="outlined"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="Tu correo electrónico"
-                type="email"
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                sx={{ flexShrink: 0 }}
+          {/* Section 1: Brand & Contact */}
+          <Grid size={{ xs: 12, md: 6, lg: 5 }}>
+            <Stack spacing={2} sx={{ textAlign: { xs: "center", md: "left" } }}>
+              <Box>
+                <Typography
+                  variant="h3"
+                  component="h2"
+                  color="text.primary"
+                  sx={{
+                    fontWeight: 800,
+                    letterSpacing: "-0.03em",
+                    mb: 1,
+                  }}
+                >
+                  Fabio Fruto
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  sx={{
+                    fontSize: "0.95rem",
+                    lineHeight: 1.6,
+                    maxWidth: { xs: "100%", md: 500 },
+                    mx: { xs: "auto", md: 0 },
+                  }}
+                >
+                  Transformo ideas en soluciones digitales de alto impacto.
+                  Especializado en desarrollo web, interfaces intuitivas y
+                  arquitecturas escalables que potencian el crecimiento de tu
+                  negocio.
+                </Typography>
+              </Box>
+
+              <Link
+                href="mailto:fabiofruto3@gmail.com"
+                color="text.primary"
+                underline="none"
+                sx={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: { xs: "center", md: "flex-start" },
+                  gap: 1.5,
+                  fontSize: "1.2rem",
+                  fontWeight: 600,
+                  transition: "color 0.2s",
+                  "&:hover": { color: "primary.main" },
+                }}
               >
-                Más info
-              </Button>
+                <FaEnvelope size={24} /> fabiofruto3@gmail.com
+              </Link>
             </Stack>
-          </Box>
-        </Box>
+          </Grid>
 
-        {/* Sistema */}
+          {/* Section 2: Social Icons (Big & Bold) */}
+          <Grid size={{ xs: 12, md: 6, lg: 5 }}>
+            <Stack
+              direction="row"
+              spacing={1.5}
+              justifyContent={{ xs: "center", md: "flex-end" }}
+              flexWrap="wrap"
+            >
+              {socialLinks.map((item) => (
+                <IconButton
+                  key={item.label}
+                  component="a"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                  sx={{
+                    p: 1.5,
+                    color: "text.primary",
+                    border: "1px solid",
+                    borderColor: "divider",
+                    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                    "&:hover": {
+                      color: "primary.main",
+                      borderColor: "primary.main",
+                      transform: "translateY(-4px)",
+                      bgcolor: "action.hover",
+                    },
+                  }}
+                >
+                  {item.icon}
+                </IconButton>
+              ))}
+            </Stack>
+          </Grid>
+        </Grid>
+
         <Box
           sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
+            mt: { xs: 4, md: 6 },
+            pt: 3,
+            borderTop: "1px solid",
+            borderColor: "divider",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
-          <Typography variant="body2" fontWeight={600}>
-            Sistema
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Documentación
-          </Link>
-          <Link color="text.secondary" href="#">
-            FAQs
-          </Link>
-        </Box>
-
-        {/* Desarrolladores */}
-        {/* <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Desarrolladores
-          </Typography>
-          <Link
-            color="text.secondary"
-            href="https://www.instagram.com/fabiofruto8/"
-            target="_blank"
-          >
-            Fabio Fruto
-          </Link>
-          <Link
-            color="text.secondary"
-            href="https://www.instagram.com/jesulin_jimenez"
-            target="_blank"
-          >
-            Jesus Jimenez
-          </Link>
-        </Box> */}
-
-        {/* Legal */}
-        <Box
-          sx={{
-            display: { xs: "none", sm: "flex" },
-            flexDirection: "column",
-            gap: 1,
-          }}
-        >
-          <Typography variant="body2" fontWeight={600}>
-            Legal
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Términos
-          </Link>
-          <Link color="text.secondary" href="#">
-            Privacidad
-          </Link>
-        </Box>
-      </Box>
-
-      {/* Bottom */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          pt: { xs: 4, sm: 8 },
-          width: "100%",
-          borderTop: "1px solid",
-          borderColor: "divider",
-        }}
-      >
-        <div>
-          <Link color="text.secondary" href="#">
-            Política de privacidad
-          </Link>
-          <Typography display="inline" sx={{ mx: 0.5, opacity: 0.5 }}>
-            &nbsp;•&nbsp;
-          </Typography>
-          <Link color="text.secondary" href="#">
-            Términos y condiciones
-          </Link>
           <Copyright />
-        </div>
-        <Stack direction="row" justifyContent="left" spacing={1} useFlexGap>
-          <IconButton color="inherit" href="#" aria-label="Logo UIB">
-            {/*  <img src={logo2} style={logoStyle2} alt="Logo de UIB" /> */}
-          </IconButton>
-        </Stack>
-      </Box>
-    </Container>
+        </Box>
+      </Container>
+    </Box>
   );
 }
