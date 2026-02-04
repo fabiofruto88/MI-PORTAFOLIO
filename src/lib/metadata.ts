@@ -12,20 +12,19 @@ interface SEOProps {
 export function generateSEO({
   title,
   description,
-  image = "/images/og-image.jpg",
   url = "https://tudominio.com",
   keywords = [],
   type = "website",
 }: SEOProps): Metadata {
-  const siteTitle = `${title} | Portafolio Profesional`;
+  const siteTitle = `${title} | Desarrollador de software`;
 
   return {
     title: siteTitle,
     description,
     keywords: keywords.join(", "),
-    authors: [{ name: "Fabio Fruto" }],
-    creator: "Fabio Fruto",
-    publisher: "Fabio Fruto",
+    authors: [{ name: "Fabio Fruto Jimenez" }],
+    creator: "Fabio Fruto Jimenez",
+    publisher: "Fabio Fruto Jimenez",
 
     openGraph: {
       type,
@@ -33,15 +32,7 @@ export function generateSEO({
       url,
       title: siteTitle,
       description,
-      siteName: "Portafolio Profesional de Fabio Fruto",
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      siteName: "Portafolio Profesional de Fabio Fruto Jimenez",
     },
 
     robots: {
