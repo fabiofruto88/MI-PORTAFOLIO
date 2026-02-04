@@ -173,7 +173,12 @@ export default function Home() {
       {/*inicio  */}
       <Stack
         id="inicio"
-        sx={{ minHeight: "80dvh", bgcolor: theme.palette.background.paper }}
+        sx={{
+          minHeight: "80dvh",
+          bgcolor: theme.palette.background.paper,
+          justifyContent: "center",
+          alignContent: "center",
+        }}
       >
         <Container maxWidth="xl">
           <Grid container spacing={{ xs: 1, md: 0 }}>
