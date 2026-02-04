@@ -68,6 +68,9 @@ export default function ProjectCard(
       tabIndex={0}
       sx={{
         width: "100%",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
         borderRadius: 2,
         overflow: "hidden",
         border: `1px solid ${theme.palette.divider}`,
@@ -80,9 +83,6 @@ export default function ProjectCard(
           transform: "translateY(-2px)",
           boxShadow: `0 16px 40px ${alpha(theme.palette.common.black, 0.14)}`,
           borderColor: theme.palette.primary.main,
-          "& img": {
-            transform: "scale(1.08)",
-          },
         },
         ...sx,
       }}
@@ -90,8 +90,7 @@ export default function ProjectCard(
       <Box
         sx={{
           position: "relative",
-          background: headerBg,
-          height: "clamp(140px, 22vw, 190px)",
+          height: "clamp(140px, 22vw, 280px)",
           overflow: "hidden",
         }}
       >
@@ -161,7 +160,7 @@ export default function ProjectCard(
         </Stack>
       </Box>
 
-      <Stack spacing={1.5} sx={{ p: 3 }}>
+      <Stack spacing={1.5} sx={{ p: 3, flexGrow: 1 }}>
         <Typography
           variant="h5"
           component="h3"
@@ -197,7 +196,7 @@ export default function ProjectCard(
           spacing={1}
           useFlexGap
           flexWrap="wrap"
-          sx={{ pt: 0.5 }}
+          sx={{ pt: 0.5, marginTop: "auto" }}
         >
           {technologies.map((tech) => {
             const Icon = tech.icon;
