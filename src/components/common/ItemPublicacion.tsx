@@ -40,9 +40,12 @@ export default function ItemPublicacion({
         borderRadius: 2,
         border: `1px solid ${theme.palette.divider}`,
         background: theme.palette.background.paper,
-        display: "flex",
-        gap: 3,
-        alignItems: "flex-start",
+        display: "grid",
+        gap: 2,
+        // Mobile: Icon (col 1) | Chip (col 2). Date wraps. Content wraps.
+        // Desktop: Icon (col 1) | Chip (col 2) | Date (col 3)
+        gridTemplateColumns: { xs: "auto 1fr", sm: "auto max-content 1fr" },
+        alignItems: "start",
         transition: "all 0.3s ease",
         "&:hover": {
           transform: "translateY(-4px)",
@@ -51,10 +54,11 @@ export default function ItemPublicacion({
         },
       }}
     >
-      {/* Contenedor del Icono */}
+      {/* Icono */}
       <Box
         sx={{
-          flexShrink: 0,
+          gridColumn: "1",
+          gridRow: { xs: "1", sm: "1 / span 2" },
           width: 56,
           height: 56,
           borderRadius: 1,
@@ -64,73 +68,86 @@ export default function ItemPublicacion({
           background: alpha(theme.palette.primary.main, 0.15),
           color: theme.palette.primary.light,
           fontSize: "1.5rem",
+          alignSelf: { xs: "center", sm: "start" },
         }}
       >
         {icon}
       </Box>
 
-      {/* Contenido */}
-      <Stack spacing={1} flex={1}>
-        <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
-          <Chip
-            label={badgeLabel}
-            size="small"
-            sx={{
-              fontWeight: 700,
-              fontSize: "0.7rem",
-              height: 24,
-              borderRadius: "6px",
-              background: theme.palette.primary.main,
-              color: "#fff", // Texto blanco siempre para contraste
-              "& .MuiChip-label": { px: 1.5 },
-            }}
-          />
-          <Typography
-            variant="caption"
-            sx={{
-              color: theme.palette.text.secondary,
-              fontWeight: 500,
-              fontSize: "0.8rem",
-            }}
-          >
-            {dateOrSubtitle}
-          </Typography>
-        </Stack>
+      {/* Chip */}
+      <Chip
+        label={badgeLabel}
+        size="small"
+        sx={{
+          gridColumn: "2",
+          justifySelf: "start",
+          alignSelf: "center",
+          fontWeight: 700,
+          fontSize: "0.7rem",
+          height: 24,
+          borderRadius: "6px",
+          background: theme.palette.primary.main,
+          color: "#fff",
+          "& .MuiChip-label": { px: 1.5 },
+        }}
+      />
 
-        <Box>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 700,
-              lineHeight: 1.3,
-              mb: 0.5,
-              color: theme.palette.text.primary,
-            }}
-          >
-            {title}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: alpha(theme.palette.text.primary, 0.7),
-              fontWeight: 500,
-              mb: 1,
-              display: "block",
-            }}
-          >
-            {publisher}
-          </Typography>
-          <Typography
-            variant="body2"
-            sx={{
-              color: theme.palette.text.secondary,
-              lineHeight: 1.6,
-            }}
-          >
-            {description}
-          </Typography>
-        </Box>
-      </Stack>
+      {/* Date */}
+      <Typography
+        variant="caption"
+        sx={{
+          gridColumn: { xs: "1 / -1", sm: "3" },
+          gridRow: { xs: "2", sm: "1" },
+          alignSelf: "center",
+          color: theme.palette.text.secondary,
+          fontWeight: 500,
+          fontSize: "0.8rem",
+          mt: { xs: -1, sm: 0 },
+          pl: { xs: 0.5, sm: 0 },
+        }}
+      >
+        {dateOrSubtitle}
+      </Typography>
+
+      {/* Contenido */}
+      <Box
+        sx={{
+          gridColumn: { xs: "1 / -1", sm: "2 / span 2" },
+          gridRow: { xs: "3", sm: "2" },
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            lineHeight: 1.3,
+            mb: 0.5,
+            color: theme.palette.text.primary,
+          }}
+        >
+          {title}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: alpha(theme.palette.text.primary, 0.7),
+            fontWeight: 500,
+            mb: 1,
+            display: "block",
+          }}
+        >
+          {publisher}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            color: theme.palette.text.secondary,
+            lineHeight: 1.6,
+          }}
+        >
+          {description}
+        </Typography>
+      </Box>
     </Box>
   );
 }

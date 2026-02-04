@@ -4,6 +4,7 @@ import { Box, Typography, Paper, Avatar, Stack, useTheme } from "@mui/material";
 import Image from "next/image";
 import { MdWorkOutline } from "react-icons/md";
 import { BsPcDisplay } from "react-icons/bs";
+import { motion } from "framer-motion";
 
 export default function HeroSectionImage() {
   const theme = useTheme();
@@ -61,16 +62,25 @@ export default function HeroSectionImage() {
             zIndex: 10,
           }}
         >
-          <BadgeCard
-            title="3+ Años"
-            subtitle="EXPERIENCIA"
-            icon={
-              <MdWorkOutline
-                style={{ color: theme.palette.primary.main, fontSize: 28 }}
-              />
-            }
-            theme={theme}
-          />
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            <BadgeCard
+              title="3+ Años"
+              subtitle="EXPERIENCIA"
+              icon={
+                <MdWorkOutline
+                  style={{ color: theme.palette.primary.main, fontSize: 28 }}
+                />
+              }
+              theme={theme}
+            />
+          </motion.div>
         </Box>
 
         <Box
@@ -81,16 +91,26 @@ export default function HeroSectionImage() {
             zIndex: 10,
           }}
         >
-          <BadgeCard
-            title="Docente"
-            subtitle="IUB en territorios"
-            icon={
-              <BsPcDisplay
-                style={{ color: theme.palette.primary.main, fontSize: 28 }}
-              />
-            }
-            theme={theme}
-          />
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+          >
+            <BadgeCard
+              title="Docente"
+              subtitle="IUB en territorios"
+              icon={
+                <BsPcDisplay
+                  style={{ color: theme.palette.primary.main, fontSize: 28 }}
+                />
+              }
+              theme={theme}
+            />
+          </motion.div>
         </Box>
       </Box>
     </Stack>

@@ -7,9 +7,12 @@ import {
   Typography,
   useTheme,
   alpha,
+  Stack,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import Link from "next/link"; // Opcional, si el botón lleva a una página o mailto
+import { FaWhatsapp } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 export default function ContactSection() {
   const theme = useTheme();
@@ -59,7 +62,7 @@ export default function ContactSection() {
               lineHeight: 1.2,
             }}
           >
-            ¿Tienes un desafío técnico para mí?
+            ¿Tienes un desafío para mí?
           </Typography>
 
           {/* Descripción */}
@@ -77,33 +80,72 @@ export default function ContactSection() {
             Disponible para proyectos de desarrollo de software a medida
           </Typography>
 
-          {/* Botón de Acción (CTA) */}
-          <Button
-            component={Link}
-            href="mailto:fabiofruto3@gmail.com" // Reemplazar con tu acción real
-            variant="contained"
-            size="large"
-            sx={{
-              backgroundColor: "#ffffff",
-              color: "#0f172a", // Texto oscuro para contraste máximo
-              fontWeight: 700,
-              fontSize: "0.875rem",
-              letterSpacing: "0.05em",
-              borderRadius: "50px", // Botón tipo píldora
-              px: 5,
-              py: 1.5,
-              textTransform: "uppercase",
-              boxShadow: "0 4px 14px 0 rgba(255,255,255,0.3)",
-              transition: "transform 0.2s ease, box-shadow 0.2s ease",
-              "&:hover": {
-                backgroundColor: "#f8fafc",
-                transform: "scale(1.05)",
-                boxShadow: "0 6px 20px 0 rgba(255,255,255,0.4)",
-              },
-            }}
+          {/* Botones de Acción (CTA) */}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={{ xs: 2, sm: 3 }}
+            justifyContent="center"
+            alignItems="center"
           >
-            Hablemos Hoy
-          </Button>
+            <Button
+              component={Link}
+              href="mailto:fabiofruto3@gmail.com"
+              variant="contained"
+              size="large"
+              startIcon={<MdEmail />}
+              sx={{
+                backgroundColor: "#ffffff",
+                color: "#0f172a",
+                fontWeight: 700,
+                fontSize: "0.875rem",
+                borderRadius: "50px",
+                px: 4,
+                py: 1.5,
+                textTransform: "uppercase",
+                boxShadow: "0 4px 14px 0 rgba(255,255,255,0.3)",
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  backgroundColor: "#f8fafc",
+                  transform: "translateY(-3px)",
+                  boxShadow: "0 6px 20px 0 rgba(255,255,255,0.4)",
+                },
+              }}
+            >
+              Enviar Correo
+            </Button>
+
+            <Button
+              component={Link}
+              href="https://wa.me/573002549872"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outlined"
+              size="large"
+              startIcon={<FaWhatsapp />}
+              sx={{
+                color: "#fff",
+                borderColor: "rgba(255,255,255,0.3)",
+                fontWeight: 700,
+                fontSize: "0.875rem",
+                borderRadius: "50px",
+                px: 4,
+                py: 1.5,
+                textTransform: "uppercase",
+                borderWidth: "1px",
+                transition: "all 0.2s ease",
+                "&:hover": {
+                  borderColor: "#25D366",
+                  backgroundColor: alpha("#25D366", 0.1),
+                  color: "#25D366",
+                  transform: "translateY(-3px)",
+                  boxShadow: `0 4px 20px 0 ${alpha("#25D366", 0.3)}`,
+                  borderWidth: "1px",
+                },
+              }}
+            >
+              WhatsApp
+            </Button>
+          </Stack>
         </Box>
       </Container>
     </Box>
