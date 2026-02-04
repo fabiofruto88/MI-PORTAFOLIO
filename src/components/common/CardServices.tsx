@@ -40,9 +40,8 @@ const CardServices: React.FC<CardServicesProps> = ({
         width: { xs: "100%" },
         minWidth: CARD_SIZE,
         height: "100%",
-        minHeight: 330,
-        px: 4,
-        py: 5,
+        px: 3,
+        py: 2,
         borderRadius: 2,
         boxShadow: "0 8px 32px 0 rgba(17, 37, 106, 0.05)",
         backgroundColor: theme.palette.background.paper,
@@ -106,40 +105,10 @@ const CardServices: React.FC<CardServicesProps> = ({
           mb: 3,
           textAlign: "left",
           lineHeight: 1.65,
-          flexGrow: 1,
-          minHeight: 60,
         }}
       >
         {description}
       </Typography>
-
-      {/* Botón ver detalles sólido (opcional, links o solo layout) */}
-      <Link
-        href={href || "#"}
-        underline="none"
-        tabIndex={0}
-        target={href ? "_blank" : undefined}
-        rel="noopener noreferrer"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 1,
-          fontWeight: 600,
-          fontSize: 15,
-          color: theme.palette.primary.main,
-          letterSpacing: ".01em",
-          px: 0,
-          py: 0.5,
-          transition: "color 0.15s",
-          "&:hover, &:focus-visible": {
-            color: theme.palette.primary.dark,
-            textDecoration: "underline",
-          },
-          mt: "auto",
-        }}
-      >
-        VER DETALLES
-      </Link>
     </Box>
   );
 };

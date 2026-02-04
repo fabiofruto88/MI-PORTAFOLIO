@@ -298,7 +298,7 @@ export default function Home() {
         p={1}
         my={{ xs: 3, md: 1 }}
         sx={{
-          minHeight: "80dvh",
+          minHeight: "60dvh",
           justifyContent: "center",
           alignContent: "center",
           bgcolor: theme.palette.background.paper,
