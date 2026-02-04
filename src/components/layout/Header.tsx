@@ -35,11 +35,11 @@ export default function Header() {
   });
 
   const links = [
-    { label: "INICIO", href: "/" },
-    { label: "SERVICIOS", href: "/servicios" },
-    { label: "EXPERIENCIA", href: "/experiencia" },
-    { label: "PROYECTOS", href: "/proyectos" },
-    { label: "PUBLICACIONES", href: "/publicaciones" },
+    { label: "INICIO", href: "/#inicio" },
+    { label: "SERVICIOS", href: "/#servicios" },
+    { label: "EXPERIENCIA", href: "/#experiencia" },
+    { label: "PROYECTOS", href: "/#proyectos" },
+    { label: "PUBLICACIONES", href: "/#publicaciones" },
   ];
 
   const handleDrawerToggle = () => {
@@ -119,7 +119,10 @@ export default function Header() {
             textTransform: "none",
             fontWeight: 600,
           }}
-          onClick={handleDrawerToggle}
+          onClick={() => {
+            window.location.href = "/#contacto";
+            handleDrawerToggle();
+          }}
         >
           CONTACTAR
         </Button>
@@ -229,6 +232,8 @@ export default function Header() {
                 fontSize: "0.875rem",
                 fontWeight: 600,
               }}
+              component={Link}
+              href="/#contacto"
             >
               CONTACTAR
             </Button>

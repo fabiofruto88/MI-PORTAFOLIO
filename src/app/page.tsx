@@ -52,6 +52,8 @@ import {
   ExperienceTimelineItem,
 } from "@/components/common/ExperienceTimeline";
 import ProjectCard from "@/components/common/ProjectCard";
+import RecognitionsSection from "@/components/sections/RecognitionsSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   const theme = useTheme();
@@ -168,9 +170,9 @@ export default function Home() {
   ];
   return (
     <>
-      {/*     <Container maxWidth="xl" sx={{ py: 8, px: 1.5 }}> */}
-      {/*sobre mi  */}
+      {/*inicio  */}
       <Stack
+        id="inicio"
         sx={{ minHeight: "80dvh", bgcolor: theme.palette.background.paper }}
       >
         <Container maxWidth="xl">
@@ -262,6 +264,7 @@ export default function Home() {
           justifyContent: "center",
           alignContent: "center",
         }}
+        id="habilidades"
       >
         <Container maxWidth="xl">
           <Typography
@@ -300,6 +303,7 @@ export default function Home() {
           alignContent: "center",
           bgcolor: theme.palette.background.paper,
         }}
+        id="servicios"
       >
         <Container maxWidth="xl" sx={{}}>
           <Typography
@@ -367,7 +371,14 @@ export default function Home() {
         </Container>
       </Stack>
       {/* experiencia */}
-      <Stack minHeight="100dvh" spacing={2} alignItems="center" px={1} py={4}>
+      <Stack
+        id="experiencia"
+        minHeight="100dvh"
+        spacing={2}
+        alignItems="center"
+        px={1}
+        py={4}
+      >
         <Typography
           variant="body2"
           sx={{
@@ -425,6 +436,7 @@ export default function Home() {
           py: 4,
           bgcolor: theme.palette.background.paper,
         }}
+        id="proyectos"
       >
         <Typography
           variant="body2"
@@ -623,7 +635,10 @@ export default function Home() {
           </Grid>
         </Container>
       </Stack>
-      {/*    </Container> */}
+      {/* reconocimientos */}
+      <RecognitionsSection />
+      {/* contacto */}
+      <ContactSection />
     </>
   );
 }
