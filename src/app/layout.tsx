@@ -10,10 +10,22 @@ import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = generateSEO({
-  title: "Fabio Fruto",
+  title: "Fabio Fruto - Portafolio Profesional",
   description:
-    "Desarrollador Full Stack | Portafolio de Proyectos y Habilidades",
-  keywords: ["next.js", "react", "typescript", "material-ui", "landing page"],
+    "Portafolio de Fabio Fruto, desarrollador full stack especializado en React, Next.js y React Native. Construye landing pages, e-commerce y apps móviles, integra automatizaciones con n8n y OpenAI y comparte experiencia docente, publicaciones y reconocimientos.",
+  keywords: [
+    "Fabio Fruto",
+    "desarrollador full stack",
+    "React",
+    "Next.js",
+    "React Native",
+    "n8n automation",
+    "apps móviles",
+    "landing pages",
+    "proyectos IA",
+    "docente programación",
+  ],
+  url: "https://fabiofruto.com",
 });
 
 export default function RootLayout({

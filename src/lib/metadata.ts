@@ -12,7 +12,7 @@ interface SEOProps {
 export function generateSEO({
   title,
   description,
-  url = "https://tudominio.com",
+  url = "https://fabiofruto.com",
   keywords = [],
   type = "website",
 }: SEOProps): Metadata {
