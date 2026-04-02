@@ -60,7 +60,7 @@ export default function Home() {
   const techStack1 = [
     { icon: SiReact, name: "React", color: "#61DAFB" },
     { icon: SiNextdotjs, name: "Next.js", color: "#000000" },
-    { icon: FaAngular, name: "Angular", color: "#DD0031" },
+    // { icon: FaAngular, name: "Angular", color: "#DD0031" },
     { icon: DiHtml5, name: "HTML5", color: "#E34F26" },
     { icon: SiCss3, name: "CSS3", color: "#2965F1" },
     { icon: SiJavascript, name: "JavaScript", color: "#F7DF1E" },
@@ -72,12 +72,12 @@ export default function Home() {
   const techStack2 = [
     { icon: SiN8N, name: "n8n", color: "#eb5175" },
     { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
-    { icon: SiExpress, name: "Express", color: "#000000" },
+    // { icon: SiExpress, name: "Express", color: "#000000" },
     { icon: SiFastapi, name: "FastAPI", color: "#009688" },
     { icon: DiMysql, name: "MySQL", color: "#4169E1" },
-    { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+    // { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
     { icon: SiGit, name: "Git", color: "#F05032" },
-    { icon: SiDocker, name: "Docker", color: "#2496ED" },
+    //{ icon: SiDocker, name: "Docker", color: "#2496ED" },
     { icon: FcAndroidOs, name: "Android OS", color: "#3DDC84" },
     { icon: SiOpencv, name: "OpenCV", color: "#5C3EE8" },
   ];
