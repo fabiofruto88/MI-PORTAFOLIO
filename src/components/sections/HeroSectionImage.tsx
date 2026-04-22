@@ -71,7 +71,7 @@ export default function HeroSectionImage() {
             }}
           >
             <BadgeCard
-              title="3+ Años"
+              title="2+ Años"
               subtitle="EXPERIENCIA"
               icon={
                 <MdWorkOutline

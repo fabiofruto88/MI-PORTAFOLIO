@@ -71,7 +71,7 @@ export default function Home() {
   ];
   const techStack2 = [
     { icon: SiN8N, name: "n8n", color: "#eb5175" },
-    { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+    // { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
     // { icon: SiExpress, name: "Express", color: "#000000" },
     { icon: SiFastapi, name: "FastAPI", color: "#009688" },
     { icon: DiMysql, name: "MySQL", color: "#4169E1" },
