@@ -2,6 +2,7 @@
 import HeroSectionImage from "@/components/sections/HeroSectionImage";
 import {
   Box,
+  Button,
   Container,
   Grid,
   IconButton,
@@ -231,6 +232,19 @@ export default function Home() {
                   display="flex"
                   width="100%"
                 >
+                  <Button
+                    variant="outlined"
+                    sx={{
+                      fontWeight: 700,
+                      color: theme.palette.text.primary,
+                      border: `2px solid ${theme.palette.text.primary}`,
+                      borderRadius: 2,
+                      p: 2,
+                    }}
+                    href="https://drive.google.com/file/d/1uMMmJpeAWHsTrnZ_coLa1RzXHnzG9Keh/view?usp=sharing"
+                  >
+                    Descargar CV
+                  </Button>
                   <IconButton
                     sx={{ width: 50, height: 50, p: 0 }}
                     href="https://github.com/fabiofruto88"
