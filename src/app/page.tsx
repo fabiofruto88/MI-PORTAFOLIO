@@ -224,7 +224,7 @@ export default function Home() {
                   código mantenible, proyectos con impacto real
                 </Typography>
                 <Stack
-                  direction="row"
+                  direction={{ xs: "column", sm: "row" }}
                   spacing={5}
                   justifyContent="center"
                   justifyItems="center"
@@ -240,11 +240,16 @@ export default function Home() {
                       border: `2px solid ${theme.palette.text.primary}`,
                       borderRadius: 2,
                       p: 2,
+                      px: { xs: 2, sm: 3 },
+                      py: { xs: 1, sm: 2 },
+                      width: { xs: "100%", sm: "auto" },
+                      fontSize: { xs: "0.9rem", sm: "1rem" },
                     }}
                     href="https://drive.google.com/file/d/1uMMmJpeAWHsTrnZ_coLa1RzXHnzG9Keh/view?usp=sharing"
                   >
                     Descargar CV
                   </Button>
+
                   <IconButton
                     sx={{ width: 50, height: 50, p: 0 }}
                     href="https://github.com/fabiofruto88"
