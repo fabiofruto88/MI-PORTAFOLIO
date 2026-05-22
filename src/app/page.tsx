@@ -97,7 +97,7 @@ export default function Home() {
       id: "exp-2",
       company: "Institución Universitaria de Barranquilla en Territorios",
       role: "Docente Catedrático – Fundamentos de Programación",
-      period: "ENERO 2026 — PRESENTE",
+      period: "ENERO 2026 — JUNIO 2026",
       bullets: [
         "Impartición de Fundamentos de Programación enfocada en análisis de problemas, diseño de algoritmos y estructuras de control.",
         "Formación orientada a la automatización de tareas y optimización de procesos, fortaleciendo habilidades clave para la ingeniería.",
