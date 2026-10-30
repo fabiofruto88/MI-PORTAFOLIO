@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { styled, useTheme } from "@mui/material/styles";
-import Switch, { SwitchProps } from "@mui/material/Switch";
+import { styled } from "@mui/material/styles";
+import Switch from "@mui/material/Switch";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import React from "react";
 

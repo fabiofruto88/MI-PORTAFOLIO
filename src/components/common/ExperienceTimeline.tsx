@@ -244,12 +244,12 @@ function TimelineHeader({
 }): React.ReactElement {
   return (
     <Box sx={{ textAlign: align, maxWidth: 420 }}>
-      <Typography variant="h5" sx={{ fontWeight: 700, lineHeight: 1.1 }}>
+      <Typography variant="h5" component="h3" sx={{ fontWeight: 700, lineHeight: 1.1 }}>
         {item.company}
       </Typography>
 
       <Typography
-        variant="subtitle2"
+        variant="subtitle2" component="p"
         sx={{ fontWeight: 700, color: "primary.main", mt: 0.5 }}
       >
         {item.role}

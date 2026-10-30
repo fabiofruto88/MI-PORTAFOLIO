@@ -4,10 +4,11 @@ import ThemeProvider from "@/components/providers/ThemeProvider";
 import Header from "@/components/layout/Header";
 
 import { generateSEO } from "@/lib/metadata";
+import { serializeJsonLd, siteJsonLd } from "@/lib/jsonld";
 import "./globals.css";
 import Footer from "@/components/layout/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = generateSEO({
   title: "Fabio Fruto - Portafolio Profesional",
@@ -36,6 +37,12 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(siteJsonLd),
+          }}
+        />
         <ThemeProvider>
           <Header />
           <main style={{ minHeight: "100dvh", paddingTop: "64px" }}>

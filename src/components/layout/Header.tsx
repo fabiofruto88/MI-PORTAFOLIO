@@ -69,11 +69,11 @@ export default function Header() {
       >
         <Stack direction="row" alignItems="center" spacing={1}>
           <FaCode color={theme.palette.text.primary} size={24} />
-          <Typography variant="h6" sx={{ fontWeight: 700 }}>
+          <Typography variant="h6" component="span" sx={{ fontWeight: 700 }}>
             Fabio Fruto
           </Typography>
         </Stack>
-        <IconButton onClick={handleDrawerToggle}>
+        <IconButton onClick={handleDrawerToggle} aria-label="cerrar menú">
           <FiX />
         </IconButton>
       </Box>
@@ -119,10 +119,9 @@ export default function Header() {
             textTransform: "none",
             fontWeight: 600,
           }}
-          onClick={() => {
-            window.location.href = "/#contacto";
-            handleDrawerToggle();
-          }}
+          component={Link}
+          href="/#contacto"
+          onClick={handleDrawerToggle}
         >
           CONTACTAR
         </Button>

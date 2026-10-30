@@ -45,7 +45,7 @@ export default function HeroSectionImage() {
         >
           <Image
             src="/images/profile.webp"
-            alt="Profile"
+            alt="Retrato de Fabio Fruto Jimenez, desarrollador de software"
             fill
             style={{ objectFit: "cover", borderRadius: 24 }}
             sizes="(max-width: 600px) 100vw, 440px"
@@ -157,7 +157,7 @@ function BadgeCard({
       </Avatar>
       <Box sx={{ textAlign: "left" }}>
         <Typography
-          variant="h6"
+          variant="h6" component="span"
           fontWeight={700}
           sx={{
             lineHeight: 1,

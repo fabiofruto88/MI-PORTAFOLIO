@@ -82,14 +82,6 @@ export default function FramerMotionMarquee({
   technologies = defaultTechnologies,
   speed = DEFAULT_SPEED,
 }: FramerMotionMarqueeProps) {
-  const theme = useTheme();
-  /**
-   * Duplicamos el listado para que cuando tu scroll (x) cruce
-   * el umbral del ancho del primer bloque, la transición
-   * sea perfecta. Solo "reseteamos" x a 0 y no se nota nada.
-   */
-  const techsLoop = [...technologies, ...technologies];
-
   // Ref para medir el ancho *visible* de UN loop (sin duplicados)
   const itemContainerRef = useRef<HTMLDivElement>(null);
 
@@ -194,21 +186,27 @@ export default function FramerMotionMarquee({
               <TechIconMotion key={idx} tech={tech} index={idx} />
             ))}
           </div>
-          {/* Loop duplicado (buffer) */}
-          <div
-            style={{
-              display: "flex",
-              gap: 32,
-            }}
-          >
-            {technologies.map((tech, idx) => (
-              <TechIconMotion
-                key={technologies.length + idx}
-                tech={tech}
-                index={idx}
-              />
-            ))}
-          </div>
+          {/*
+            Loop duplicado (buffer): solo se monta en el cliente (loopWidth > 0
+            tras medir) para no duplicar los íconos en el HTML del servidor.
+          */}
+          {loopWidth > 0 && (
+            <div
+              aria-hidden="true"
+              style={{
+                display: "flex",
+                gap: 32,
+              }}
+            >
+              {technologies.map((tech, idx) => (
+                <TechIconMotion
+                  key={technologies.length + idx}
+                  tech={tech}
+                  index={idx}
+                />
+              ))}
+            </div>
+          )}
         </motion.div>
       </Box>
     </Box>

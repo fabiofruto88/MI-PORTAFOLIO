@@ -1,9 +1,11 @@
 import { Metadata } from "next";
 
+export const SITE_URL = "https://fabiofruto.com";
+export const SITE_NAME = "Portafolio Profesional de Fabio Fruto Jimenez";
+
 interface SEOProps {
   title: string;
   description: string;
-  image?: string;
   url?: string;
   keywords?: string[];
   type?: "website" | "article";
@@ -12,27 +14,32 @@ interface SEOProps {
 export function generateSEO({
   title,
   description,
-  url = "https://fabiofruto.com",
+  url = SITE_URL,
   keywords = [],
   type = "website",
 }: SEOProps): Metadata {
-  const siteTitle = `${title} | Desarrollador de software`;
-
   return {
-    title: siteTitle,
+    metadataBase: new URL(SITE_URL),
+    title,
     description,
-    keywords: keywords.join(", "),
+    keywords,
     authors: [{ name: "Fabio Fruto Jimenez" }],
     creator: "Fabio Fruto Jimenez",
     publisher: "Fabio Fruto Jimenez",
 
     openGraph: {
       type,
-      locale: "es_ES",
+      locale: "es_CO",
       url,
-      title: siteTitle,
+      title,
       description,
-      siteName: "Portafolio Profesional de Fabio Fruto Jimenez",
+      siteName: SITE_NAME,
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
     },
 
     robots: {

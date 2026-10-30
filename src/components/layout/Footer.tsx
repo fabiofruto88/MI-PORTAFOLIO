@@ -178,7 +178,34 @@ export default function Footer() {
             justifyContent: "center",
           }}
         >
-          <Copyright />
+          <Stack spacing={1} alignItems="center">
+            <Stack
+              component="nav"
+              aria-label="Páginas del sitio"
+              direction="row"
+              spacing={3}
+              flexWrap="wrap"
+              justifyContent="center"
+            >
+              {[
+                { label: "Sobre mí", href: "/about" },
+                { label: "Contacto", href: "/contact" },
+                { label: "Privacidad", href: "/privacy" },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  component={NextLink}
+                  href={item.href}
+                  color="text.secondary"
+                  underline="hover"
+                  variant="body2"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </Stack>
+            <Copyright />
+          </Stack>
         </Box>
       </Container>
     </Box>

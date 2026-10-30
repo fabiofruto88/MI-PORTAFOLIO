@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, useTheme, Link } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
 
 // Props estrictos para el componente

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Typography, Chip, useTheme, alpha, Stack } from "@mui/material";
+import { Box, Typography, Chip, useTheme, alpha } from "@mui/material";
 import { ReactNode } from "react";
 import { motion } from "framer-motion"; // Opcional: para animación suave al entrar
 
@@ -117,7 +117,7 @@ export default function ItemPublicacion({
         }}
       >
         <Typography
-          variant="h6"
+          variant="h6" component="h3"
           sx={{
             fontWeight: 700,
             lineHeight: 1.3,
