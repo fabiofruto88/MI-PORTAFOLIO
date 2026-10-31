@@ -30,10 +30,10 @@ export default function SectionManifesto() {
       if (prefersReducedMotion()) return;
       const mobile = window.innerWidth < 820;
 
-      const words = SplitText.create(sentence.current!, { type: "words" });
+      const words = SplitText.create(sentence.current!, { type: "words", aria: "none" });
       const keys = words.words.filter((w) => w.closest("[data-key]"));
       const rest = words.words.filter((w) => !w.closest("[data-key]"));
-      const giants = SplitText.create("[data-g]", { type: "chars", mask: "chars" });
+      const giants = SplitText.create("[data-g]", { type: "chars", mask: "chars", aria: "none" });
 
       // la máscara de cada letra recortaba el acento de "Móvil": se le da aire arriba
       giants.masks.forEach((m) => {

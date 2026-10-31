@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { createElement, type ComponentType } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
 import type { IconBaseProps } from "react-icons";
 import {
   SiAndroid,
@@ -85,7 +84,8 @@ const BRAND: Record<string, string> = {
 };
 
 /** Dibuja el icono de la tecnología en un canvas (tinta o acento) y lo usa como textura. */
-function iconTexture(name: string, color: string): Promise<{ tex: THREE.CanvasTexture; aspect: number }> {
+async function iconTexture(name: string, color: string): Promise<{ tex: THREE.CanvasTexture; aspect: number }> {
+  const { renderToStaticMarkup } = await import("react-dom/server");
   const Icon = ICONS[name] ?? SiReact;
   const px = 128;
   let svg = renderToStaticMarkup(createElement(Icon, { size: px, color }));

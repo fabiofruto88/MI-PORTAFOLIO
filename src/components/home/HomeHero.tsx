@@ -41,8 +41,16 @@ export default function HomeHero() {
   useEffect(() => {
     /* eslint-disable react-hooks/set-state-in-effect */
     setNarrow(window.innerWidth < 820);
-    if (!prefersReducedMotion() && supportsWebGL()) setWebgl(true);
     /* eslint-enable react-hooks/set-state-in-effect */
+    // el retrato tramado espera a que la página termine de pintar: no compite con el primer render
+    // en móvil (menos de 768 px) se queda la foto normal; el tramado es de tablet en adelante
+    if (window.innerWidth < 768 || prefersReducedMotion() || !supportsWebGL()) return;
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 250));
+    const id = idle(() => setWebgl(true));
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(id);
+      else window.clearTimeout(id);
+    };
   }, []);
 
   // Entrada: arranca en el primer frame de la subida de la cortina
@@ -50,7 +58,7 @@ export default function HomeHero() {
     () => {
       if (!revealed) return;
       if (prefersReducedMotion()) return;
-      const name = SplitText.create("[data-line]", { type: "chars", mask: "chars" });
+      const name = SplitText.create("[data-line]", { type: "chars", mask: "chars", aria: "hidden" });
       const tl = gsap.timeline();
       tl.fromTo(
         name.chars,
@@ -156,12 +164,12 @@ export default function HomeHero() {
           />
         ) : (
           <Image
-            src="/images/profile.webp"
+            src="/images/profile-color.webp"
             alt="Retrato de Fabio Fruto Jimenez, desarrollador de software"
             fill
             priority
             sizes="(max-width: 820px) 100vw, 50vw"
-            style={{ objectFit: "cover", objectPosition: "50% 20%" }}
+            style={{ objectFit: "contain", objectPosition: "50% 100%" }}
           />
         )}
       </div>

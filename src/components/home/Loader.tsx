@@ -34,7 +34,7 @@ export default function Loader({ onReveal }: { onReveal: () => void }) {
         })
         .to(n, {
           v: 100,
-          duration: 1.5,
+          duration: 1.1,
           ease: "power2.inOut",
           onUpdate: () => {
             if (count.current) count.current.textContent = String(Math.round(n.v)).padStart(3, "0");

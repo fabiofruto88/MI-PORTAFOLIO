@@ -81,11 +81,11 @@ export default function ProjectsIndex() {
                 ))}
               </ul>
               <div className={styles.links}>
-                <a href={p.demoUrl} {...ext} className={btn.primary}>
+                <a href={p.demoUrl} {...ext} className={btn.primary} aria-label={`Ver demo de ${p.title}`}>
                   <LuEye aria-hidden="true" />
                   Ver demo
                 </a>
-                <a href={p.githubUrl} {...ext} className={btn.ghost}>
+                <a href={p.githubUrl} {...ext} className={btn.ghost} aria-label={`Código de ${p.title}`}>
                   <LuCode aria-hidden="true" />
                   Código
                 </a>

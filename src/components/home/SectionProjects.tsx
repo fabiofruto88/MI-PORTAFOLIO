@@ -105,11 +105,11 @@ export default function SectionProjects() {
                   ))}
                 </ul>
                 <div className={styles.links} data-t>
-                  <a href={p.demoUrl} {...ext} className={styles.primary}>
+                  <a href={p.demoUrl} {...ext} className={styles.primary} aria-label={`Ver demo de ${p.title}`}>
                     <LuEye aria-hidden="true" />
                     Ver demo
                   </a>
-                  <a href={p.githubUrl} {...ext} className={styles.ghost}>
+                  <a href={p.githubUrl} {...ext} className={styles.ghost} aria-label={`Código de ${p.title}`}>
                     <LuCode aria-hidden="true" />
                     Código
                   </a>

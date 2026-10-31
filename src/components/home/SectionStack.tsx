@@ -30,6 +30,7 @@ export default function SectionStack() {
   const [webgl, setWebgl] = useState(false);
   const [narrow, setNarrow] = useState(false);
   const [visible, setVisible] = useState(false);
+  const [near, setNear] = useState(false);
 
   useEffect(() => {
     /* eslint-disable react-hooks/set-state-in-effect */
@@ -38,7 +39,10 @@ export default function SectionStack() {
     /* eslint-enable react-hooks/set-state-in-effect */
     const el = root.current;
     if (!el) return;
-    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { rootMargin: "120px" });
+    const io = new IntersectionObserver(([e]) => {
+      setVisible(e.isIntersecting);
+      if (e.isIntersecting) setNear(true);
+    }, { rootMargin: "120px" });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -71,7 +75,7 @@ export default function SectionStack() {
     <section ref={root} id="stack" className={styles.section}>
       <div className={styles.pin}>
         <SplitText text="Tecnología para cada frente." tag="h2" textAlign="left" threshold={0.15} rootMargin="0px" className={styles.title} splitType="lines" effect="skew" mask delay={120} duration={1.1} />
-        {webgl && (
+        {webgl && near && (
           <div className={styles.stage} aria-hidden="true">
             <StackScene rig={rig} groups={skillGroups} narrow={narrow} visible={visible} />
           </div>

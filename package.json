@@ -41,5 +41,11 @@
     "shadcn": "^4.23.0",
     "typescript": "^5",
     "vitest": "^5.0.5"
-  }
+  },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4"
+  ]
 }
