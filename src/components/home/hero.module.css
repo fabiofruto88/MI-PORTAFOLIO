@@ -141,8 +141,12 @@
     top: clamp(96px, 16dvh, 140px);
     font-size: clamp(3.6rem, 21vw, 7rem);
   }
+  .hero {
+    min-height: max(100dvh, 820px);
+  }
+  /* la foto empieza justo debajo del nombre: la cabeza nunca tapa las letras */
   .stage {
-    inset: 22% 0 272px 0;
+    inset: calc(clamp(96px, 16dvh, 140px) + 1.68 * clamp(3.6rem, 21vw, 7rem) + 12px) 0 272px 0;
   }
   .still {
     right: 50%;
