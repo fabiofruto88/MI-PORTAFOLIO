@@ -15,6 +15,7 @@
     "@gsap/react": "^2.1.2",
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
+    "@mui/material-nextjs": "^7.3.10",
     "@react-three/fiber": "^9.8.2",
     "framer-motion": "^12.29.2",
     "gsap": "^3.15.0",

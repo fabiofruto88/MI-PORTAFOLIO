@@ -61,7 +61,7 @@ html.lenis body {
   navigation: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+@media all {
   ::view-transition-old(root) {
     animation: 520ms cubic-bezier(0.76, 0, 0.24, 1) both vt-out;
   }

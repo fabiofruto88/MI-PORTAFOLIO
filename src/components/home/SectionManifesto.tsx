@@ -95,11 +95,11 @@ export default function SectionManifesto() {
 
   return (
     <section ref={root} id="manifiesto" className={styles.section}>
-      <h2 className={styles.sr}>Qué hago</h2>
+      <h2 className={styles.sr}>Qué hago: sitios web, apps móviles y automatizaciones con IA</h2>
       <div ref={pin} className={styles.pin}>
         <p ref={sentence} className={styles.sentence}>
-          Convierto lo que tu negocio necesita en software que funciona: sitios <b data-key>web</b>, apps
-          <b data-key>móviles</b> y automatizaciones con <b data-key>IA</b>.
+          Un solo desarrollador para tu sitio <b data-key>web</b>, tu app <b data-key>móvil</b> y tus
+          automatizaciones con <b data-key>IA</b>, de la idea a la publicación.
         </p>
         <div className={styles.giants} data-giants aria-hidden="true">
           <span className={styles.giant} data-g>

@@ -116,7 +116,7 @@ const SplitText = ({
         onCompleteRef.current?.();
       };
 
-      if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      if (new URLSearchParams(window.location.search).get('motion') === 'off') {
         setReady(true);
         finish();
         return;

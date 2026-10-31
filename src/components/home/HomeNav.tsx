@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import MotionToggle from "./MotionToggle";
 import { ScrollTrigger, useGSAP } from "./gsap";
 import styles from "./nav.module.css";
 
@@ -50,7 +49,6 @@ export default function HomeNav() {
           ),
         )}
       </nav>
-      <MotionToggle />
       <Link href="/#contacto" className={styles.cta}>
         Escríbeme
       </Link>

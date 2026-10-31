@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRef } from "react";
-import { CONTACT, aboutPage } from "@/data/site";
+import { CONTACT, CONTACT_AGENCY, CONTACT_BLURB, WHATSAPP_QUOTE_URL } from "@/data/site";
 import { gsap, useGSAP, prefersReducedMotion } from "./gsap";
 import styles from "./contact.module.css";
 import SplitText from "../reactbits/SplitText";
@@ -38,14 +38,15 @@ export default function SectionContact() {
       <SplitText text="Hablemos." tag="h2" textAlign="left" threshold={0.15} rootMargin="0px" className={styles.title} splitType="chars" effect="pop" delay={55} duration={1.2} hoverEffect="wave" />
       <div className={styles.body}>
         <p className={styles.about}>
-          {aboutPage.intro}{" "}
+          {CONTACT_BLURB}{" "}
           <Link href="/about" className={styles.more}>
             Sobre mí
           </Link>
         </p>
+        <p className={styles.about}>{CONTACT_AGENCY}</p>
         <div className={styles.actions}>
-          <a href={CONTACT.whatsappUrl} className={styles.primary} {...ext}>
-            WhatsApp
+          <a href={WHATSAPP_QUOTE_URL} className={styles.primary} {...ext}>
+            Cotizar por WhatsApp
           </a>
           <a href={`mailto:${CONTACT.email}`} className={styles.secondary}>
             Correo

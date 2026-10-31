@@ -12,6 +12,7 @@ import {
   EASE_OUT,
   prefersReducedMotion,
 } from "./gsap";
+import { HERO_SUB, WHATSAPP_QUOTE_URL } from "@/data/site";
 import Loader from "./Loader";
 import styles from "./hero.module.css";
 
@@ -131,7 +132,7 @@ export default function HomeHero() {
         <span className={styles.line} data-line="b">
           Fruto
         </span>
-        <span className={styles.sr}> Jimenez, desarrollador de software full stack</span>
+        <span className={styles.sr}> Jimenez, desarrollador freelance en Barranquilla: sitios web, apps móviles y automatizaciones con IA</span>
       </h1>
 
       <div className={styles.stage} data-stage>
@@ -140,15 +141,15 @@ export default function HomeHero() {
             src="/images/profile-cutout.png"
             fit="contain"
             pattern="floyd"
-            pixelSize={narrow ? 2 : 3}
+            pixelSize={1}
             inkColor="#0f1013"
             paperColor="#d9dadc"
             rimColor="#2f55d4"
-            rim={0.14}
+            rim={0.2}
             levels={2}
-            contrast={1.2}
-            brightness={0.2}
-            revealRadius={narrow ? 150 : 230}
+            contrast={1.15}
+            brightness={0.08}
+            revealRadius={narrow ? 120 : 180}
             softness={0.6}
             linger={1.2}
             wander
@@ -167,15 +168,14 @@ export default function HomeHero() {
 
       <div className={styles.copy} data-copy>
         <p className={styles.sub} data-reveal>
-          Desarrollo sitios web, aplicaciones móviles y automatizaciones con IA para negocios que quieren
-          vender y operar mejor. De la idea a la publicación.
+          {HERO_SUB}
         </p>
         <div className={styles.actions} data-reveal>
-          <Link href="/#proyectos" className={styles.primary}>
-            Ver proyectos
-          </Link>
-          <Link href="/#contacto" className={styles.secondary}>
-            Hablemos
+          <a href={WHATSAPP_QUOTE_URL} className={styles.primary} target="_blank" rel="noopener noreferrer">
+            Cotizar por WhatsApp
+          </a>
+          <Link href="/#proyectos" className={styles.secondary}>
+            Ver proyectos reales
           </Link>
         </div>
       </div>

@@ -461,7 +461,7 @@ const DitherVeil = ({
     const container = containerRef.current;
     if (!container) return undefined;
 
-    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = new URLSearchParams(window.location.search).get('motion') === 'off';
     const renderer = new Renderer({ dpr: Math.min(window.devicePixelRatio || 1, 2), alpha: false, antialias: false });
     const gl = renderer.gl;
     const canvas = gl.canvas;

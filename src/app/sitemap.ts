@@ -3,7 +3,7 @@ import { SITE_URL } from "@/lib/metadata";
 import { infoPages } from "@/data/site";
 
 // Actualizar al publicar cambios de contenido; evita que cambie en cada build.
-const LAST_MODIFIED = new Date("2026-10-29");
+const LAST_MODIFIED = new Date("2026-10-31");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

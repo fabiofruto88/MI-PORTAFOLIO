@@ -7,8 +7,8 @@ export const experienceItems: ExperienceTimelineItem[] = [
     role: "Desarrollador Frontend & Mobile",
     period: "2022 — PRESENTE",
     bullets: [
-      "Desarrollo de soluciones web y móviles personalizadas con React.js, Next.js y React Native para diversos clientes y proyectos académicos.",
-      "Implementación de arquitecturas escalables, integración de APIs REST y optimización de rendimiento en aplicaciones multiplataforma.",
+      "Diseño, programo y publico sitios web, apps móviles y automatizaciones para negocios, emprendedores y proyectos académicos.",
+      "Acompaño cada proyecto desde la primera reunión hasta la publicación, y entrego software rápido, ordenado y fácil de mantener.",
     ],
   },
   {
@@ -17,8 +17,8 @@ export const experienceItems: ExperienceTimelineItem[] = [
     role: "Docente Catedrático – Fundamentos de Programación",
     period: "ENERO 2026 — JUNIO 2026",
     bullets: [
-      "Impartición de Fundamentos de Programación enfocada en análisis de problemas, diseño de algoritmos y estructuras de control.",
-      "Formación orientada a la automatización de tareas y optimización de procesos, fortaleciendo habilidades clave para la ingeniería.",
+      "Enseñé a plantear un problema, dividirlo en pasos y convertirlo en un programa que funciona.",
+      "Clases orientadas a automatizar tareas repetitivas y mejorar procesos.",
     ],
   },
   {
@@ -27,8 +27,8 @@ export const experienceItems: ExperienceTimelineItem[] = [
     role: "Desarrollador Frontend",
     period: "MAYO 2024 — OCTUBRE 2025",
     bullets: [
-      "Desarrollo de aplicaciones web y móviles con React.js, Next.js y React Native, implementando SSR, SSG y optimización de rendimiento.",
-      "Construcción de componentes reutilizables con Material UI y participación en proyectos publicados en Google Play Store y App Store.",
+      "Desarrollé aplicaciones web y móviles para clientes, cuidando la velocidad de carga y el posicionamiento en buscadores.",
+      "Construí interfaces reutilizables y participé en proyectos publicados en Google Play y App Store.",
     ],
   },
   {
@@ -37,8 +37,8 @@ export const experienceItems: ExperienceTimelineItem[] = [
     role: "Técnico en Sistemas",
     period: "FEBRERO 2023 — JULIO 2023",
     bullets: [
-      "Diagnóstico y reparación de dispositivos electrónicos (escáneres POS, impresoras térmicas, computadores).",
-      "Instalación de sistemas operativos y gestión de inventario de repuestos mediante software RedsisLAB.",
+      "Diagnóstico y reparación de equipos de punto de venta: escáneres, impresoras térmicas y computadores.",
+      "Instalación de sistemas operativos y control del inventario de repuestos con el software RedsisLAB.",
     ],
   },
 ];

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Archivo, Geist, Inter } from "next/font/google";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import SiteChrome from "@/components/layout/SiteChrome";
 
 import { generateSEO } from "@/lib/metadata";
+import { HOME } from "@/data/site";
 import { serializeJsonLd, siteJsonLd } from "@/lib/jsonld";
 import "./globals.css";
 
@@ -27,20 +29,19 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = generateSEO({
-  title: "Fabio Fruto - Portafolio Profesional",
+  title: HOME.title,
   description:
-    "Portafolio de Fabio Fruto, desarrollador full stack especializado en React, Next.js y React Native. Construye landing pages, e-commerce y apps móviles, integra automatizaciones con n8n y OpenAI y comparte experiencia docente, publicaciones y reconocimientos.",
+    "Desarrollador freelance en Barranquilla. Creo sitios web, apps móviles y automatizaciones con IA y te acompaño hasta publicarlos. Proyectos con demo y código.",
   keywords: [
+    "desarrollador freelance Barranquilla",
+    "desarrollador web Barranquilla",
+    "crear página web para negocio",
+    "desarrollo de apps móviles Barranquilla",
+    "automatización con IA",
+    "landing page para restaurante",
+    "tienda en línea",
+    "desarrollador React Next.js",
     "Fabio Fruto",
-    "desarrollador full stack",
-    "React",
-    "Next.js",
-    "React Native",
-    "n8n automation",
-    "apps móviles",
-    "landing pages",
-    "proyectos IA",
-    "docente programación",
   ],
   url: "https://fabiofruto.com",
 });
@@ -61,9 +62,11 @@ export default function RootLayout({
             __html: serializeJsonLd(siteJsonLd),
           }}
         />
-        <ThemeProvider>
-          <SiteChrome>{children}</SiteChrome>
-        </ThemeProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider>
+            <SiteChrome>{children}</SiteChrome>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { contactPage } from "@/data/site";
 import { generateSEO, SITE_URL } from "@/lib/metadata";
 
 export const metadata: Metadata = generateSEO({
-  title: `${contactPage.title} | Fabio Fruto Jimenez`,
+  title: "Contacto y cotización por WhatsApp | Fabio Fruto",
   description: contactPage.description,
   url: `${SITE_URL}${contactPage.path}`,
 });

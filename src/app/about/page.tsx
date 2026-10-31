@@ -4,7 +4,7 @@ import { aboutPage } from "@/data/site";
 import { generateSEO, SITE_URL } from "@/lib/metadata";
 
 export const metadata: Metadata = generateSEO({
-  title: `${aboutPage.title} | Fabio Fruto Jimenez`,
+  title: "Sobre mí: desarrollador freelance en Barranquilla | Fabio Fruto",
   description: aboutPage.description,
   url: `${SITE_URL}${aboutPage.path}`,
 });

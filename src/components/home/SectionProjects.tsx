@@ -68,7 +68,7 @@ export default function SectionProjects() {
           duration={1.1}
         />
         <p className={styles.lead}>
-          Software real, publicado, con demo y código abierto para que lo revises tú mismo.
+          Tres proyectos reales con demo en línea y código público. Los puedes abrir y revisar tú mismo antes de escribirme.
         </p>
       </header>
 

@@ -38,7 +38,7 @@ export default function ProjectsIndex() {
           duration={1.1}
         />
         <p className={styles.lead}>
-          Software que funciona hoy: sitios, aplicaciones y automatizaciones con demo en línea y código público.
+          Sitios web, aplicaciones y automatizaciones con IA. Cada uno tiene demo en línea y código público en GitHub.
         </p>
       </header>
 

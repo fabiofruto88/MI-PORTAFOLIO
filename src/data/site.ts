@@ -27,34 +27,36 @@ export const aboutPage: InfoPageContent = {
   path: "/about",
   title: "Sobre mí",
   description:
-    "Quién es Fabio Fruto Jimenez: desarrollador de software full stack, docente de programación y creador de aplicaciones web, móviles y automatizaciones.",
+    "Fabio Fruto Jimenez es desarrollador freelance en Barranquilla, Colombia: crea sitios web, apps móviles y automatizaciones con IA, y acompaña cada proyecto hasta su publicación.",
   intro:
-    "Soy Fabio Fruto Jimenez, desarrollador de software especializado en React, Next.js y React Native. Construyo aplicaciones web y móviles, landing pages, tiendas en línea y automatizaciones con n8n y OpenAI para negocios y proyectos académicos.",
+    "Soy Fabio Fruto Jimenez, desarrollador de software freelance en Barranquilla, Colombia. Hago sitios web, apps móviles y automatizaciones con IA para negocios y emprendedores, y te acompaño desde la idea hasta la publicación en Google, Google Play o App Store.",
   sections: [
     {
-      heading: "A qué me dedico",
+      heading: "Qué hago y para quién",
       paragraphs: [
-        "Trabajo como desarrollador independiente desde 2022. Diseño y programo interfaces responsivas, integro APIs REST y optimizo el rendimiento de aplicaciones multiplataforma. También he participado en proyectos publicados en Google Play Store y App Store.",
-        "Mi enfoque es entregar código mantenible y arquitecturas limpias, desde el prototipo hasta la aplicación publicada, cuidando el SEO técnico, la accesibilidad y los tiempos de carga.",
+        "Trabajo como desarrollador independiente desde 2022. Un solo desarrollador cubre tu sitio web, tu app móvil y tus automatizaciones con IA, así que no necesitas coordinar a tres proveedores distintos.",
+        "Si tienes un negocio local, te dejo un sitio rápido, listo para aparecer en Google y con un botón para que tus clientes te escriban por WhatsApp. Si tienes una idea, construyo la primera versión de tu app o automatización para que la pruebes con usuarios reales. Si eres una agencia o empresa de desarrollo, me sumo a tu equipo como desarrollador subcontratado.",
+        "Participé en proyectos publicados en Google Play y App Store, y cuido el posicionamiento en buscadores, la accesibilidad y los tiempos de carga en cada entrega.",
       ],
     },
     {
-      heading: "Experiencia y formación",
+      heading: "Experiencia y respaldo académico",
       paragraphs: [
-        "He sido desarrollador frontend en CCorbit S.A.S (mayo de 2024 a octubre de 2025), docente catedrático de Fundamentos de Programación en la Institución Universitaria de Barranquilla en Territorios (enero a junio de 2026) y técnico en sistemas en REDSIS (2023).",
+        "Fui desarrollador frontend en CCorbit S.A.S (mayo de 2024 a octubre de 2025), docente catedrático de Fundamentos de Programación en la Institución Universitaria de Barranquilla en Territorios (enero a junio de 2026) y técnico en sistemas en REDSIS (2023).",
+        "Mi sistema UniSecure de control de acceso con reconocimiento facial se publicó en ACOFI 2024 (DOI 10.26507/paper.3977) y se presentó en REDCOLSI 2024. Su evolución, MediSecure, se presentó en REDCOLSI 2025.",
         "Soy tecnólogo en Gestión de Sistemas Informáticos y técnico profesional en Mantenimiento de Sistemas Informáticos por la Universidad de Barranquilla (IUB), además de técnico en sistemas del SENA.",
       ],
     },
     {
       heading: "Tecnologías",
       paragraphs: [
-        "React, Next.js, React Native, TypeScript, JavaScript, Material UI, Python, FastAPI, MySQL, PostgreSQL, Git, n8n, OpenAI y OpenCV. Puedes ver proyectos reales con código y demostración en la sección de proyectos del portafolio.",
+        "React, Next.js, React Native, TypeScript, JavaScript, Material UI, Python, FastAPI, MySQL, PostgreSQL, Git, n8n, OpenAI y OpenCV. Cada proyecto del portafolio tiene demo en línea y código público en GitHub para que lo revises.",
       ],
     },
     {
       heading: "Cómo trabajar conmigo",
       paragraphs: [
-        "Si tienes un proyecto de desarrollo de software a medida, escríbeme desde la página de contacto con una descripción breve de lo que necesitas, el plazo esperado y, si existe, el estado actual del producto. Respondo con una propuesta de alcance y siguientes pasos.",
+        "Escríbeme por WhatsApp o correo con lo que necesitas, para cuándo lo quieres y cómo está hoy tu proyecto. Respondo con una propuesta de alcance, plazo y siguientes pasos.",
       ],
     },
   ],
@@ -64,9 +66,9 @@ export const contactPage: InfoPageContent = {
   path: "/contact",
   title: "Contacto",
   description:
-    "Cómo contactar a Fabio Fruto Jimenez para proyectos de desarrollo de software a medida: correo, WhatsApp, LinkedIn y GitHub.",
+    "Contacta a Fabio Fruto Jimenez, desarrollador freelance en Barranquilla, por WhatsApp o correo para cotizar tu sitio web, app móvil o automatización con IA.",
   intro:
-    "Estoy disponible para proyectos de desarrollo de software a medida: aplicaciones web, apps móviles, landing pages, tiendas en línea y automatizaciones. Elige el canal que prefieras y cuéntame brevemente tu idea.",
+    "Cuéntame qué necesitas y te respondo con una propuesta clara. Atiendo desde Barranquilla, Colombia, sitios web, apps móviles, tiendas en línea y automatizaciones con IA. Elige el canal que prefieras.",
   sections: [
     {
       heading: "Canales de contacto",
@@ -81,14 +83,14 @@ export const contactPage: InfoPageContent = {
     {
       heading: "Qué incluir en tu mensaje",
       paragraphs: [
-        "Para poder responderte con una propuesta útil, indica qué quieres construir, quién lo usará, si ya existe algo desarrollado, la fecha en la que lo necesitas y, si lo tienes, un presupuesto de referencia.",
+        "Para responderte con una propuesta útil, cuéntame qué quieres construir, quién lo usará, si ya existe algo desarrollado, para cuándo lo necesitas y, si lo tienes, un presupuesto de referencia. Si eres una agencia, indícame el alcance del proyecto de tu cliente.",
         "Este sitio no usa formularios: tu mensaje llega directamente por el canal que elijas y no se almacena en este sitio.",
       ],
     },
     {
       heading: "Temas en los que puedo ayudarte",
       paragraphs: [
-        "Desarrollo web con React y Next.js, aplicaciones Android e iOS con React Native, landing pages orientadas a conversión, tiendas en línea, automatizaciones con n8n e integraciones con OpenAI, y clases o asesorías de programación.",
+        "Sitios web y landing pages con React y Next.js, apps para Android e iOS con React Native, tiendas en línea, automatizaciones con n8n y OpenAI, y clases o asesorías de programación.",
       ],
     },
   ],
@@ -141,31 +143,31 @@ export const services = [
   {
     title: "Sitios web",
     description:
-      "Sitios rápidos, claros y optimizados para buscadores, con contacto directo por WhatsApp o correo. Tu negocio visible donde tus clientes ya buscan.",
+      "Un sitio rápido que se ve bien en el celular, con tus productos, horarios y ubicación, y un botón para que el cliente te escriba por WhatsApp. Lo dejo listo para que Google lo encuentre.",
     steps: ["Búsqueda", "Visita", "Contacto"],
   },
   {
     title: "Landing pages",
     description:
-      "Una página enfocada en una sola acción: cotizar, reservar o comprar. Diseño y velocidad pensados para convertir visitas en clientes.",
+      "Una sola página para una sola acción: cotizar, reservar o pedir. Ejemplo real: Umami, la landing de un restaurante de comida costeña que lleva a pedir por WhatsApp.",
     steps: ["Oferta", "Confianza", "Conversión"],
   },
   {
     title: "Apps móviles",
     description:
-      "Aplicaciones para Android y iOS con una sola base de código: pedidos, citas y notificaciones. Te acompaño hasta su publicación en las tiendas.",
+      "Tu app para Android y iOS desde un solo código: pedidos, citas o avisos a tus clientes. Yo me encargo también de publicarla en Google Play y App Store.",
     steps: ["Instalación", "Uso", "Avisos"],
   },
   {
     title: "Tiendas en línea",
     description:
-      "Catálogo, pagos seguros e inventario en un solo sistema, para vender las 24 horas sin atención manual.",
+      "Catálogo, pagos e inventario en un solo sistema, para que vendas a cualquier hora sin atender cada pedido a mano.",
     steps: ["Catálogo", "Pago", "Pedido"],
   },
   {
     title: "Automatizaciones con IA",
     description:
-      "Asistentes y flujos que responden mensajes, ordenan información y ejecutan tareas repetitivas, conectados a las herramientas que ya usas.",
+      "Un asistente que responde preguntas con tus propios documentos y hace por ti las tareas repetitivas. Ejemplo real: un bot de Telegram que consulta tu Google Drive.",
     steps: ["Mensaje", "Asistente", "Tarea lista"],
   },
 ] as const;
@@ -174,7 +176,7 @@ export const projectSummaries = [
   {
     category: "Visión por computador",
     outcome:
-      "Controla quién entra a la universidad con el rostro y la placa del vehículo, con reportes en tiempo real.",
+      "Controla quién entra a la universidad con el rostro y la placa del vehículo, con reportes en tiempo real. Publicado en ACOFI 2024.",
     featured: true,
     title: "UniSecure: control de acceso universitario",
     description:
@@ -307,11 +309,24 @@ export const skillGroups = [
   { group: "IA y automatización", items: ["n8n", "OpenAI", "OpenCV", "PGVector"] },
 ] as const;
 
+export const CONTACT_BLURB =
+  "Cuéntame qué necesitas, para cuándo lo quieres y cómo está hoy tu proyecto. Te respondo con una propuesta clara: alcance, plazo y siguientes pasos.";
+
+export const CONTACT_AGENCY =
+  "¿Eres una agencia o una empresa de desarrollo? También trabajo como desarrollador subcontratado en los proyectos de tus clientes.";
+
 export const HOME = {
-  title: "Fabio Fruto Jimenez - Portafolio Profesional",
+  title: "Desarrollador freelance en Barranquilla | Web, apps e IA",
   summary:
-    "Desarrollador de software especializado en React, Next.js y React Native. Convierte ideas en aplicaciones web y móviles funcionales, escalables y mantenibles.",
+    "Fabio Fruto Jimenez es desarrollador de software freelance en Barranquilla, Colombia. Crea sitios web, apps móviles y automatizaciones con IA para negocios y emprendedores, y acompaña cada proyecto desde la idea hasta su publicación.",
 };
+
+export const HERO_SUB =
+  "Desarrollador freelance en Barranquilla. Hago sitios web, apps móviles y automatizaciones con IA, y te acompaño de la idea a la publicación.";
+
+export const WHATSAPP_QUOTE_URL = `${CONTACT.whatsappUrl}?text=${encodeURIComponent(
+  "Hola Fabio, vi tu portafolio y quiero cotizar un proyecto. Necesito: ",
+)}`;
 
 function toMarkdownPage(page: InfoPageContent): string {
   const sections = page.sections

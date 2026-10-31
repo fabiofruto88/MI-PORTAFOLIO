@@ -23,13 +23,19 @@ describe("páginas de confianza", () => {
 describe("JSON-LD", () => {
   const graph = siteJsonLd["@graph"];
   it("incluye Person, Organization y WebSite", () => {
-    expect(graph.map((n) => n["@type"])).toEqual(["Person", "Organization", "WebSite"]);
+    expect(graph.slice(0, 3).map((n) => n["@type"])).toEqual(["Person", ["Organization", "ProfessionalService"], "WebSite"]);
   });
   it("Organization tiene contactPoint y address", () => {
-    const org = graph.find((n) => n["@type"] === "Organization") as { contactPoint: { contactType: string; email: string }; address: { "@type": string } };
+    const org = graph[1] as unknown as { contactPoint: { contactType: string; email: string }; address: { "@type": string; addressLocality: string } };
     expect(org.contactPoint.contactType).toBeTruthy();
     expect(org.contactPoint.email).toContain("@");
     expect(org.address["@type"]).toBe("PostalAddress");
+    expect(org.address.addressLocality).toBe("Barranquilla");
+  });
+  it("incluye un CreativeWork por proyecto y el artículo ACOFI con DOI", () => {
+    const types = graph.map((n) => n["@type"]);
+    expect(types.filter((t) => t === "CreativeWork")).toHaveLength(6);
+    expect(JSON.stringify(graph)).toContain("10.26507/paper.3977");
   });
   it("escapa < al serializar", () => {
     expect(serializeJsonLd({ a: "</script>" })).not.toContain("<");

@@ -3,6 +3,28 @@
 import { useEffect, useRef } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
+import { createElement, type ComponentType } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
+import type { IconBaseProps } from "react-icons";
+import {
+  SiAndroid,
+  SiCss3,
+  SiFastapi,
+  SiHtml5,
+  SiIos,
+  SiJavascript,
+  SiMui,
+  SiMysql,
+  SiN8N,
+  SiNextdotjs,
+  SiOpenai,
+  SiOpencv,
+  SiPostgresql,
+  SiPython,
+  SiReact,
+  SiTypescript,
+} from "react-icons/si";
+import { LuWaypoints } from "react-icons/lu";
 
 export interface StackRig {
   /** 0 → 1 a lo largo del pin de la sección. */
@@ -19,29 +41,88 @@ interface Props {
 const INK = "#0f1013";
 const ACCENT = "#2f55d4";
 
-function labelTexture(text: string, color: string, font: string) {
-  const dpr = 2;
-  const size = 44 * dpr;
-  const c = document.createElement("canvas");
-  const ctx = c.getContext("2d")!;
-  ctx.font = `600 ${size}px ${font}`;
-  const w = Math.ceil(ctx.measureText(text).width) + 24 * dpr;
-  c.width = w;
-  c.height = size * 1.6;
-  ctx.font = `600 ${size}px ${font}`;
-  ctx.fillStyle = color;
-  ctx.textBaseline = "middle";
-  ctx.fillText(text, 12 * dpr, c.height / 2);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  tex.anisotropy = 4;
-  return { tex, aspect: c.width / c.height };
+const ICONS: Record<string, ComponentType<IconBaseProps>> = {
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  TypeScript: SiTypescript,
+  JavaScript: SiJavascript,
+  "Material UI": SiMui,
+  HTML5: SiHtml5,
+  CSS3: SiCss3,
+  "React Native": SiReact,
+  Android: SiAndroid,
+  iOS: SiIos,
+  Python: SiPython,
+  FastAPI: SiFastapi,
+  MySQL: SiMysql,
+  PostgreSQL: SiPostgresql,
+  n8n: SiN8N,
+  OpenAI: SiOpenai,
+  OpenCV: SiOpencv,
+  PGVector: LuWaypoints,
+};
+
+/** Color oficial de cada marca. */
+const BRAND: Record<string, string> = {
+  React: "#61DAFB",
+  "Next.js": "#0f1013",
+  TypeScript: "#3178C6",
+  JavaScript: "#F7DF1E",
+  "Material UI": "#007FFF",
+  HTML5: "#E34F26",
+  CSS3: "#1572B6",
+  "React Native": "#61DAFB",
+  Android: "#3DDC84",
+  iOS: "#0f1013",
+  Python: "#3776AB",
+  FastAPI: "#009688",
+  MySQL: "#4479A1",
+  PostgreSQL: "#4169E1",
+  n8n: "#EA4B71",
+  OpenAI: "#0f1013",
+  OpenCV: "#5C3EE8",
+  PGVector: "#336791",
+};
+
+/** Dibuja el icono de la tecnología en un canvas (tinta o acento) y lo usa como textura. */
+function iconTexture(name: string, color: string): Promise<{ tex: THREE.CanvasTexture; aspect: number }> {
+  const Icon = ICONS[name] ?? SiReact;
+  const px = 128;
+  let svg = renderToStaticMarkup(createElement(Icon, { size: px, color }));
+  if (!svg.includes("xmlns=")) svg = svg.replace("<svg", '<svg xmlns="http://www.w3.org/2000/svg"');
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement("canvas");
+      c.width = c.height = px * 2;
+      const ctx = c.getContext("2d")!;
+      // silueta del logo en color papel, ensanchada: las líneas terminan siguiendo su forma
+      const sil = document.createElement("canvas");
+      sil.width = sil.height = px * 2;
+      const sctx = sil.getContext("2d")!;
+      sctx.drawImage(img, px * 0.25, px * 0.25, px * 1.5, px * 1.5);
+      sctx.globalCompositeOperation = "source-in";
+      sctx.fillStyle = "#d9dadc";
+      sctx.fillRect(0, 0, sil.width, sil.height);
+      for (const r of [5, 10, 15]) {
+        for (let k = 0; k < 28; k++) {
+          const t = (k / 28) * Math.PI * 2;
+          ctx.drawImage(sil, Math.cos(t) * r, Math.sin(t) * r);
+        }
+      }
+      ctx.drawImage(img, px * 0.25, px * 0.25, px * 1.5, px * 1.5);
+      const tex = new THREE.CanvasTexture(c);
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.anisotropy = 4;
+      resolve({ tex, aspect: 1 });
+    };
+    img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  });
 }
 
 interface Node {
   sprite: THREE.Sprite;
   ink: THREE.CanvasTexture;
-  accent: THREE.CanvasTexture;
   group: number;
   base: THREE.Vector3;
   scale: number;
@@ -78,11 +159,15 @@ function Constellation({ rig, groups, narrow }: Omit<Props, "visible">) {
     if (!root) return;
     let cancelled = false;
     const disposables: { dispose: () => void }[] = [];
-    const font = getComputedStyle(document.body).getPropertyValue("--font-geist").trim() || "system-ui";
-    const family = `${font}, system-ui, sans-serif`;
 
-    (document.fonts?.ready ?? Promise.resolve()).then(() => {
-      if (cancelled) return;
+    const names = groups.flatMap((g) => g.items);
+    Promise.all(names.map((n) => iconTexture(n, BRAND[n] ?? INK))).then((tex) => {
+      if (cancelled) {
+        tex.forEach((t) => t.tex.dispose());
+        return;
+      }
+      const made = new Map<string, (typeof tex)[number]>();
+      names.forEach((n, i) => made.set(n, tex[i]));
       groups.forEach((g, gi) => {
         const center = CENTERS[gi % CENTERS.length];
         const pts: THREE.Vector3[] = [];
@@ -93,22 +178,28 @@ function Constellation({ rig, groups, narrow }: Omit<Props, "visible">) {
         const u = new THREE.Vector3().crossVectors(up, nrm).normalize();
         const v = new THREE.Vector3().crossVectors(nrm, u).normalize();
         const count = g.items.length;
+        const cols = count > 6 ? 3 : count > 2 ? 2 : count;
+        const rows = Math.ceil(count / cols);
         g.items.forEach((item, ni) => {
+          const col = ni % cols;
+          const row = Math.floor(ni / cols);
+          // la última fila incompleta se centra
+          const inRow = row === rows - 1 ? count - row * cols : cols;
           const p = center
             .clone()
-            .addScaledVector(u, (ni % 2 ? 1 : -1) * 0.62)
-            .addScaledVector(v, ((count - 1) / 2 - ni) * 0.5);
-          const ink = labelTexture(item, INK, family);
-          const accent = labelTexture(item, ACCENT, family);
-          disposables.push(ink.tex, accent.tex);
-          const mat = new THREE.SpriteMaterial({ map: ink.tex, transparent: true, depthWrite: false });
+            .addScaledVector(u, (col - (inRow - 1) / 2) * 0.95)
+            .addScaledVector(v, ((rows - 1) / 2 - row) * 0.9);
+          const ink = made.get(item)!;
+          disposables.push(ink.tex);
+          const mat = new THREE.SpriteMaterial({ map: ink.tex, transparent: true, depthWrite: false, depthTest: false });
           disposables.push(mat);
           const sprite = new THREE.Sprite(mat);
-          const scale = 0.34;
+          sprite.renderOrder = 2;
+          const scale = 0.58;
           sprite.scale.set(scale * ink.aspect, scale, 1);
           sprite.position.copy(p);
           root.add(sprite);
-          nodes.current.push({ sprite, ink: ink.tex, accent: accent.tex, group: gi, base: p.clone(), scale });
+          nodes.current.push({ sprite, ink: ink.tex, group: gi, base: p.clone(), scale });
           pts.push(p);
         });
         const seg: THREE.Vector3[] = [];
@@ -117,9 +208,10 @@ function Constellation({ rig, groups, narrow }: Omit<Props, "visible">) {
           seg.push(pts[i], center);
         }
         const geo = new THREE.BufferGeometry().setFromPoints(seg);
-        const mat = new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.15 });
+        const mat = new THREE.LineBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.15, depthTest: false });
         disposables.push(geo, mat);
         const line = new THREE.LineSegments(geo, mat);
+        line.renderOrder = 1;
         root.add(line);
         lines.current.push(line);
       });
@@ -164,13 +256,8 @@ function Constellation({ rig, groups, narrow }: Omit<Props, "visible">) {
     nodes.current.forEach((nd) => {
       const on = nd.group === active;
       const mat = nd.sprite.material as THREE.SpriteMaterial;
-      const target = on ? 1 : 0.28;
+      const target = on ? 1 : 0.5;
       mat.opacity += (target - mat.opacity) * k;
-      const map = on ? nd.accent : nd.ink;
-      if (mat.map !== map) {
-        mat.map = map;
-        mat.needsUpdate = true;
-      }
       const s = on ? 1.18 : 1;
       const cur = nd.sprite.scale.y / nd.scale;
       const ns = cur + (s - cur) * k;

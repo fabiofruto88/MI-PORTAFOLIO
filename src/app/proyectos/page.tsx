@@ -5,9 +5,9 @@ import SectionContact from "@/components/home/SectionContact";
 import { generateSEO, SITE_URL } from "@/lib/metadata";
 
 export const metadata: Metadata = generateSEO({
-  title: "Proyectos | Fabio Fruto Jimenez",
+  title: "Proyectos de desarrollo web, apps e IA | Fabio Fruto",
   description:
-    "Proyectos de Fabio Fruto Jimenez: sitios web, aplicaciones y automatizaciones con IA, con demo en línea y código público en GitHub.",
+    "6 proyectos reales de Fabio Fruto, desarrollador freelance en Barranquilla: landing de restaurante, control de acceso con IA publicado en ACOFI 2024 y bot RAG en n8n. Con demo y código.",
   url: `${SITE_URL}/proyectos`,
 });
 

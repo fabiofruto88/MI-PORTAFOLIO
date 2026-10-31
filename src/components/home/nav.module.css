@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 84px;
   padding: 0 var(--gutter);
   color: var(--ink);
   font-family: var(--body);
@@ -23,17 +23,24 @@
   transition: color 240ms var(--ease-press);
 }
 
+/* cristal: una cápsula translúcida que desenfoca lo que pasa por detrás */
 .nav::before {
   content: "";
   position: absolute;
-  inset: 0 0 -14px 0;
+  inset: 10px max(4px, calc(var(--gutter) - 24px));
   z-index: -1;
-  background: color-mix(in srgb, var(--paper) 78%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  mask-image: linear-gradient(#000 70%, transparent);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(24px) saturate(1.7);
+  -webkit-backdrop-filter: blur(24px) saturate(1.7);
+  box-shadow:
+    0 10px 30px rgba(15, 16, 19, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   pointer-events: none;
-  transition: background-color 240ms var(--ease-press);
+  transition:
+    background 240ms var(--ease-press),
+    border-color 240ms var(--ease-press);
 }
 
 .nav[data-dark="true"] {
@@ -41,7 +48,11 @@
 }
 
 .nav[data-dark="true"]::before {
-  background: color-mix(in srgb, var(--ink) 78%, transparent);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(40, 42, 50, 0.55), rgba(15, 16, 19, 0.4));
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .nav[data-dark="true"] .cta {
@@ -53,7 +64,7 @@
   font-family: var(--display);
   font-weight: 800;
   font-stretch: 112%;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   letter-spacing: -0.02em;
   text-transform: uppercase;
 }
@@ -61,7 +72,7 @@
 .links {
   display: flex;
   gap: 32px;
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   font-weight: 500;
 }
 
@@ -91,12 +102,12 @@
 .cta {
   display: inline-flex;
   align-items: center;
-  height: 42px;
-  padding: 0 20px;
+  height: 46px;
+  padding: 0 24px;
   border-radius: 999px;
   background: var(--ink);
   color: var(--paper);
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   white-space: nowrap;
   transition: transform 160ms var(--ease-press);
