@@ -1,0 +1,30 @@
+/*
+ * Mundo visual del home: gris frío claro, tinta casi negra y un único azul.
+ * Un solo tema para toda la página; las secciones varían de fondo dentro de
+ * la misma familia, no se invierten.
+ */
+.root,
+.nav {
+  --paper: #d9dadc;
+  --paper-hi: #e8e9eb;
+  --paper-lo: #c7c9cc;
+  --ink: #0f1013;
+  --muted: #4a4d55;
+  --line: rgba(15, 16, 19, 0.16);
+  --accent: #2f55d4;
+  --accent-ink: #f5f6f8;
+  --display: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --body: var(--font-geist), system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-press: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --gutter: clamp(20px, 4vw, 64px);
+}
+
+.root {
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  overflow-x: clip;
+}

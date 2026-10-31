@@ -1,0 +1,23 @@
+.inline {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-bottom: 1.5px solid currentColor;
+  padding: 2px 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 160ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.inline:active {
+  transform: scale(0.97);
+}
+
+.inline:focus-visible {
+  outline: 2px solid var(--accent, #2f55d4);
+  outline-offset: 3px;
+}
+

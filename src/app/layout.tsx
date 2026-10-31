@@ -1,14 +1,30 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Archivo, Geist, Inter } from "next/font/google";
 import ThemeProvider from "@/components/providers/ThemeProvider";
-import Header from "@/components/layout/Header";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 import { generateSEO } from "@/lib/metadata";
 import { serializeJsonLd, siteJsonLd } from "@/lib/jsonld";
 import "./globals.css";
-import Footer from "@/components/layout/Footer";
 
-const inter = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+// Display con eje de ancho (wdth 62-125): el titular se estira sin cambiar de familia
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  style: ["normal", "italic"],
+  display: "swap",
+  variable: "--font-archivo",
+});
+const geist = Geist({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-geist",
+});
 
 export const metadata: Metadata = generateSEO({
   title: "Fabio Fruto - Portafolio Profesional",
@@ -35,8 +51,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
-      <body className={inter.className}>
+    <html lang="es" data-scroll-behavior="smooth">
+      <body
+        className={`${inter.className} ${inter.variable} ${archivo.variable} ${geist.variable}`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -44,11 +62,7 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>
-          <Header />
-          <main style={{ minHeight: "100dvh", paddingTop: "64px" }}>
-            {children}
-          </main>
-          <Footer />
+          <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
       </body>
     </html>

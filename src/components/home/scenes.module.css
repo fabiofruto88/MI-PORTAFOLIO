@@ -1,0 +1,332 @@
+/* Escenas de servicio: SVG en bucle. Solo transform y opacity; ease-out fuerte. */
+.scene {
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  color: var(--scene-ink, currentColor);
+  overflow: visible;
+}
+
+.win {
+  fill: var(--scene-win, rgba(255, 255, 255, 0.5));
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.card {
+  fill: var(--scene-card, rgba(255, 255, 255, 0.7));
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+.field {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+.dot {
+  fill: currentColor;
+  opacity: 0.4;
+}
+.bar {
+  fill: currentColor;
+}
+.barSoft {
+  fill: currentColor;
+  opacity: 0.28;
+}
+.hit {
+  fill: var(--scene-hit, #2f55d4);
+  stroke: none;
+}
+.cta {
+  fill: var(--scene-hit, #2f55d4);
+}
+.ctaText {
+  fill: var(--scene-cta, #f5f6f8);
+}
+.badge {
+  stroke: none;
+}
+.ptr {
+  fill: currentColor;
+  stroke: var(--scene-win-solid, #fff);
+  stroke-width: 1.5;
+}
+
+/* un guion de 6 s: aparece, se usa, se confirma, vuelve a empezar */
+.type,
+.rise1,
+.rise2,
+.pop,
+.bubble,
+.toast,
+.cart,
+.pick,
+.press,
+.cursor {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.rail {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 3 7;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+.ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-dasharray: 10 8;
+}
+.check {
+  fill: none;
+  stroke: #f5f6f8;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.spin,
+.packetWrap,
+.tick {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.spin {
+  animation-name: spin;
+  animation-timing-function: linear;
+  animation-duration: 3s;
+}
+.packetWrap {
+  animation-name: packet;
+}
+.tick {
+  animation-name: tick;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes packet {
+  0%,
+  18% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  24% {
+    opacity: 1;
+  }
+  44% {
+    transform: translateX(110px);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  54% {
+    transform: translateX(110px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(110px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateX(220px);
+    opacity: 1;
+  }
+  86%,
+  100% {
+    transform: translateX(220px);
+    opacity: 0;
+  }
+}
+@keyframes tick {
+  0%,
+  64% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  76%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.type {
+  animation-name: typeIn;
+}
+.rise1 {
+  animation-name: rise;
+}
+.rise2 {
+  animation-name: rise;
+  animation-delay: 0.12s;
+}
+.pop {
+  animation-name: pop;
+}
+.bubble {
+  animation-name: bubble;
+}
+.toast {
+  animation-name: toast;
+}
+.cart {
+  animation-name: bump;
+}
+.pick {
+  animation-name: pick;
+}
+.press {
+  animation-name: press;
+}
+.cursor {
+  animation-name: cursorMove;
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+
+@keyframes typeIn {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  14%,
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes rise {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  26%,
+  90% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes pop {
+  0%,
+  52% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  60%,
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes bubble {
+  0%,
+  66% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  76%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes toast {
+  0%,
+  60% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  70%,
+  92% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes bump {
+  0%,
+  58% {
+    transform: none;
+  }
+  64% {
+    transform: scale(1.12);
+  }
+  72%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes pick {
+  0%,
+  30% {
+    transform: none;
+  }
+  38%,
+  62% {
+    transform: translateY(-8px);
+  }
+  72%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes press {
+  0%,
+  44% {
+    transform: none;
+  }
+  48% {
+    transform: scale(0.97);
+  }
+  54%,
+  100% {
+    transform: none;
+  }
+}
+@keyframes cursorMove {
+  0% {
+    transform: translate(380px, 330px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  44%,
+  60% {
+    transform: translate(250px, 264px);
+    opacity: 1;
+  }
+  70%,
+  100% {
+    transform: translate(300px, 300px);
+    opacity: 0;
+  }
+}
+

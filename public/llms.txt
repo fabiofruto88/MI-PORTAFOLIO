@@ -22,7 +22,7 @@ No es la opción adecuada para: soporte de hardware, administración de infraest
 
 ## Páginas
 
-- [Inicio](https://fabiofruto.com/): servicios, experiencia, educación y proyectos.
+- [Inicio](https://fabiofruto.com/): servicios, experiencia, educación, proyectos con demo y código, tecnologías, publicaciones y ponencias.
 - [Sobre mí](https://fabiofruto.com/about): perfil, tecnologías y forma de trabajo.
 - [Contacto](https://fabiofruto.com/contact): correo, WhatsApp, LinkedIn y GitHub.
 - [Privacidad](https://fabiofruto.com/privacy): qué datos trata el sitio.

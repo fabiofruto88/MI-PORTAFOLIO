@@ -1,0 +1,83 @@
+/* Tokens heredados de .root (home.module.css). Sin JS o con movimiento reducido
+   se ve la frase completa en tinta: las tres palabras gigantes quedan ocultas. */
+.section {
+  position: relative;
+  background: var(--paper);
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.pin {
+  position: relative;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 0 var(--gutter);
+  overflow: clip;
+}
+
+.sentence {
+  margin: 0;
+  max-width: 17em;
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 100%;
+  font-size: clamp(2.3rem, 6vw, 6.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.sentence b {
+  font-weight: inherit;
+}
+
+.giants {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  padding: 0 var(--gutter);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.giant {
+  display: block;
+  font-family: var(--display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-size: clamp(3.2rem, 9.5vw, 10.5rem);
+  color: var(--ink);
+  --w: 118;
+}
+
+.giant:nth-child(2) {
+  color: var(--accent);
+}
+
+.giant div,
+.giant span {
+  font-stretch: calc(var(--w, 118) * 1%);
+}
+
+.giant {
+  font-stretch: calc(var(--w) * 1%);
+}
+
+@media (max-width: 820px) {
+  .giant {
+    font-size: clamp(3.2rem, 19vw, 6.5rem);
+  }
+}
