@@ -6,12 +6,13 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   gsap,
-  ScrollTrigger,
   SplitText,
   useGSAP,
   EASE_OUT,
   prefersReducedMotion,
 } from "./gsap";
+import { FaWhatsapp } from "react-icons/fa6";
+import { LuLayoutGrid } from "react-icons/lu";
 import { HERO_SUB, WHATSAPP_QUOTE_URL } from "@/data/site";
 import Loader from "./Loader";
 import styles from "./hero.module.css";
@@ -107,26 +108,28 @@ export default function HomeHero() {
     { scope: root, dependencies: [revealed] },
   );
 
-  // Salida: vector izquierda, ligado al scroll
+  // Salida: vector izquierda, ligado al scroll. Solo en pantallas anchas: en móvil
+  // el texto y los botones se quedan quietos para poder leerlos y tocarlos.
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: root.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        })
-        .to("[data-line='a']", { xPercent: -42, ease: "none" }, 0)
-        .to("[data-line='b']", { xPercent: -70, ease: "none" }, 0)
-        .to("[data-copy]", { xPercent: -60, opacity: 0, ease: "none" }, 0)
-        .to("[data-stage]", { xPercent: -30, ease: "none" }, 0);
-      return () => {
-        ScrollTrigger.getAll().forEach((t) => t.trigger === root.current && t.kill());
-      };
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 821px)", () => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: root.current,
+              start: "top top",
+              end: "bottom top",
+              scrub: 1,
+            },
+          })
+          .to("[data-line='a']", { xPercent: -42, ease: "none" }, 0)
+          .to("[data-line='b']", { xPercent: -70, ease: "none" }, 0)
+          .to("[data-copy]", { xPercent: -60, opacity: 0, ease: "none" }, 0)
+          .to("[data-stage]", { xPercent: -30, ease: "none" }, 0);
+      });
+      return () => mm.revert();
     },
     { scope: root },
   );
@@ -180,9 +183,11 @@ export default function HomeHero() {
         </p>
         <div className={styles.actions} data-reveal>
           <a href={WHATSAPP_QUOTE_URL} className={styles.primary} target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp aria-hidden="true" />
             Cotizar por WhatsApp
           </a>
           <Link href="/#proyectos" className={styles.secondary}>
+            <LuLayoutGrid aria-hidden="true" />
             Ver proyectos reales
           </Link>
         </div>
