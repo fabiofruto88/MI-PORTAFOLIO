@@ -1,6 +1,6 @@
 # Fabio Fruto Jimenez
 
-> Desarrollador de software freelance en Barranquilla, Colombia. Crea sitios web, apps móviles y automatizaciones con IA para negocios locales, emprendedores y agencias, y acompaña cada proyecto desde la idea hasta su publicación. Sitio en español, sin formularios ni cuentas de usuario.
+> Desarrollador de software freelance en Barranquilla, Colombia. Crea sitios web, apps móviles y automatizaciones con IA para negocios locales, emprendedores y agencias, y acompaña cada proyecto desde la idea hasta su publicación. Sitio en español, sin cuentas de usuario. El cotizador del inicio es opcional.
 
 ## Cuándo usar este sitio (when to use)
 
@@ -22,6 +22,16 @@ No es la opción adecuada para: soporte de hardware, administración de infraest
 - Respaldo: publicación en ACOFI 2024 y ponencias en REDCOLSI 2024 y 2025.
 - Pruebas: proyectos con demo pública y código abierto en GitHub (UniSecure, MediSecure, Umami Landing, RAG en n8n).
 - Tecnologías: React, Next.js, React Native, TypeScript, Python, FastAPI, PostgreSQL, MySQL, n8n, OpenAI y OpenCV.
+
+## Precios orientativos (COP)
+
+- Landing page: desde $2.500.000.
+- Aplicación web a la medida: desde $5.000.000.
+- Tienda en línea: desde $6.000.000.
+- App móvil: mínimo $10.000.000.
+- Otros proyectos (sitio de varias páginas, automatización con IA): se definen al conversar el alcance.
+- Son estimaciones. Entrega estimada de 25 días hábiles si el cliente entrega toda la información a tiempo y no hay retrasos de su parte.
+- El portafolio incluye un cotizador interactivo (https://fabiofruto.com/#cotizar) que arma el resumen y lo envía por WhatsApp.
 
 ## Cómo interactuar (how to call)
 

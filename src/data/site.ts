@@ -1,14 +1,10 @@
 import { SITE_URL } from "@/lib/metadata";
 import { educationItems, experienceItems } from "@/data/experience";
 
-export const CONTACT = {
-  email: "fabiofruto3@gmail.com",
-  phone: "+573002549872",
-  whatsappUrl: "https://wa.me/573002549872",
-  github: "https://github.com/fabiofruto88",
-  linkedin: "https://www.linkedin.com/in/fabio-fruto-jimenez/",
-  instagram: "https://www.instagram.com/fabiofruto8/",
-} as const;
+import { CONTACT } from "@/data/contact";
+import { pricingMarkdown } from "@/data/quote";
+
+export { CONTACT };
 
 export interface PageSection {
   heading: string;
@@ -84,7 +80,7 @@ export const contactPage: InfoPageContent = {
       heading: "Qué incluir en tu mensaje",
       paragraphs: [
         "Para responderte con una propuesta útil, cuéntame qué quieres construir, quién lo usará, si ya existe algo desarrollado, para cuándo lo necesitas y, si lo tienes, un presupuesto de referencia. Si eres una agencia, indícame el alcance del proyecto de tu cliente.",
-        "Este sitio no usa formularios: tu mensaje llega directamente por el canal que elijas y no se almacena en este sitio.",
+        "Tu mensaje llega directamente por el canal que elijas y no se almacena en este sitio. También puedes armar tu cotización con el cotizador del inicio, que deja el resumen listo en WhatsApp.",
       ],
     },
     {
@@ -100,20 +96,27 @@ export const privacyPage: InfoPageContent = {
   path: "/privacy",
   title: "Política de privacidad",
   description:
-    "Qué datos trata el portafolio de Fabio Fruto Jimenez: sin cookies de seguimiento, sin formularios y con una preferencia de tema guardada solo en tu navegador.",
+    "Qué datos trata el portafolio de Fabio Fruto Jimenez: sin cookies de seguimiento, sin cuentas de usuario y con un asistente de IA opcional en el cotizador.",
   intro:
-    "Este sitio es un portafolio informativo. Está diseñado para tratar la mínima cantidad de datos posible. Esta página explica qué se guarda, dónde y cómo puedes pedir información. Última actualización: 29 de octubre de 2026.",
+    "Este sitio es un portafolio informativo. Está diseñado para tratar la mínima cantidad de datos posible. Esta página explica qué se guarda, dónde y cómo puedes pedir información. Última actualización: 31 de octubre de 2026.",
   sections: [
     {
       heading: "Datos que se guardan en tu navegador",
       paragraphs: [
-        "El sitio guarda en el almacenamiento local de tu navegador (localStorage) una sola preferencia: el modo de color claro u oscuro que elijas. Ese dato permanece en tu dispositivo, no se envía a ningún servidor y puedes borrarlo limpiando los datos del sitio.",
+        "El sitio no guarda datos en tu navegador, salvo una excepción: en las pocas páginas que incluyen el selector de modo claro u oscuro, tu elección se guarda en el almacenamiento local (localStorage). Ese dato permanece en tu dispositivo, no se envía a ningún servidor y puedes borrarlo limpiando los datos del sitio.",
+      ],
+    },
+    {
+      heading: "Cotizador y asistente de IA",
+      paragraphs: [
+        "El cotizador del inicio arma tu resumen en tu navegador y lo envía por WhatsApp solo cuando tú pulsas el botón final. Este sitio no guarda tus respuestas.",
+        "Si usas el asistente de IA del cotizador, el texto que escribes se envía desde el servidor de este sitio a la API de Gemini de Google para generar la respuesta. No incluyas datos sensibles como contraseñas, documentos de identidad o información bancaria. El sitio limita la cantidad de mensajes por persona.",
       ],
     },
     {
       heading: "Lo que este sitio no hace",
       paragraphs: [
-        "No usa cookies de seguimiento ni de publicidad, no incluye herramientas de analítica de terceros, no tiene formularios ni cuentas de usuario y no vende ni comparte datos personales.",
+        "No usa cookies de seguimiento ni de publicidad, no incluye herramientas de analítica de terceros, no tiene cuentas de usuario y no vende ni comparte datos personales.",
       ],
     },
     {
@@ -364,6 +367,10 @@ ${timeline(experienceItems)}
 ## Educación
 
 ${timeline(educationItems)}
+
+## Precios orientativos
+
+${pricingMarkdown()}
 
 ## Proyectos
 

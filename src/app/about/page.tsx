@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import InfoPage from "@/components/common/InfoPage";
+import HomeStage from "@/components/home/HomeStage";
+import SectionContact from "@/components/home/SectionContact";
 import { aboutPage } from "@/data/site";
 import { generateSEO, SITE_URL } from "@/lib/metadata";
 
@@ -10,5 +12,10 @@ export const metadata: Metadata = generateSEO({
 });
 
 export default function Page() {
-  return <InfoPage page={aboutPage} />;
+  return (
+    <HomeStage>
+      <InfoPage page={aboutPage} />
+      <SectionContact />
+    </HomeStage>
+  );
 }

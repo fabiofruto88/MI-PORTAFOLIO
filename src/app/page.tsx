@@ -2,6 +2,7 @@ import HomeStage from "@/components/home/HomeStage";
 import HomeHero from "@/components/home/HomeHero";
 import SectionManifesto from "@/components/home/SectionManifesto";
 import SectionServices from "@/components/home/SectionServices";
+import SectionQuote from "@/components/home/SectionQuote";
 import SectionStack from "@/components/home/SectionStack";
 import SectionExperience from "@/components/home/SectionExperience";
 import SectionProjects from "@/components/home/SectionProjects";
@@ -14,6 +15,7 @@ export default function Home() {
       <HomeHero />
       <SectionManifesto />
       <SectionServices />
+      <SectionQuote />
       <SectionStack />
       <SectionExperience />
       <SectionProjects />

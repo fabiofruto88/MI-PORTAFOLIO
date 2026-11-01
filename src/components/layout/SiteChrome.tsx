@@ -9,7 +9,7 @@ import HomeNav from "@/components/home/HomeNav";
 /** El home usa su propia barra y pie cinematográficos; el resto, el layout MUI. */
 export default function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const isHome = pathname === "/" || pathname === "/proyectos";
+  const isHome = ["/", "/proyectos", "/about", "/contact", "/privacy"].includes(pathname);
 
   if (isHome) {
     return (
