@@ -53,8 +53,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" data-scroll-behavior="smooth">
+      {/* suppressHydrationWarning: extensiones del navegador (ColorZilla agrega cz-shortcut-listen) cambian <body> antes de que React cargue */}
       <body
         className={`${inter.className} ${inter.variable} ${archivo.variable} ${geist.variable}`}
+        suppressHydrationWarning
       >
         <script
           type="application/ld+json"
