@@ -2,6 +2,7 @@
 .page {
   background: var(--paper);
   color: var(--ink);
+  grid-template-columns: minmax(0, 1fr);
   padding: clamp(112px, 16dvh, 170px) var(--gutter) clamp(72px, 12dvh, 130px);
 }
 
@@ -21,7 +22,7 @@
 
 .eyebrow {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -36,8 +37,14 @@
   text-transform: uppercase;
   line-height: 0.92;
   letter-spacing: -0.04em;
-  font-size: clamp(3rem, 8vw, 8.4rem);
+  font-size: clamp(2.2rem, 11vw, 3.8rem);
   overflow-wrap: anywhere;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: clamp(3rem, 8vw, 8.4rem);
+  }
 }
 
 .privacy .title {
@@ -296,7 +303,7 @@
 }
 
 .channelLabel {
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--muted);
 }

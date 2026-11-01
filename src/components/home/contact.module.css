@@ -2,6 +2,7 @@
   position: relative;
   min-height: 100dvh;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   padding: clamp(100px, 16dvh, 170px) var(--gutter) 28px;
   background: var(--ink);
@@ -16,7 +17,8 @@
   text-transform: uppercase;
   line-height: 0.88;
   letter-spacing: -0.04em;
-  font-size: clamp(3.4rem, 10vw, 11rem);
+  font-size: clamp(2.4rem, 12.5vw, 11rem);
+  overflow-wrap: anywhere;
   --w: 118;
   font-stretch: calc(var(--w) * 1%);
 }
@@ -41,6 +43,8 @@
 }
 
 .more {
+  display: inline-block;
+  padding-block: 10px;
   color: var(--paper);
   border-bottom: 2px solid var(--accent);
 }
@@ -102,6 +106,7 @@
 
 .email {
   justify-self: start;
+  padding-block: 8px;
   font-family: var(--display);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -122,7 +127,12 @@
 
 .footer nav {
   display: flex;
-  gap: 22px;
+  gap: 8px 22px;
+}
+.footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .footer a:hover {

@@ -48,7 +48,7 @@
 }
 
 .item {
-  opacity: 0.56;
+  opacity: 0.8;
   transition: opacity 320ms var(--ease-out);
 }
 
@@ -87,6 +87,25 @@
   }
   .list {
     gap: 8px;
+  }
+  .skills {
+    display: none;
+  }
+  .item[data-active="true"] .skills {
+    display: block;
+  }
+}
+
+/* móvil horizontal: poca altura, solo el grupo activo muestra sus tecnologías */
+@media (max-height: 520px) {
+  .pin {
+    padding-top: 84px;
+  }
+  .title {
+    font-size: clamp(1.8rem, 9vh, 3rem);
+  }
+  .list {
+    gap: 6px;
   }
   .skills {
     display: none;

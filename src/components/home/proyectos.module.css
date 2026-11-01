@@ -6,6 +6,7 @@
 
 .head {
   display: grid;
+  min-width: 0;
   gap: 14px;
   max-width: 62rem;
   margin-bottom: clamp(32px, 6dvh, 56px);
@@ -13,7 +14,7 @@
 
 .eyebrow {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -28,7 +29,13 @@
   text-transform: uppercase;
   line-height: 0.92;
   letter-spacing: -0.04em;
-  font-size: clamp(3rem, 8vw, 8.4rem);
+  font-size: clamp(2.2rem, 11vw, 3.8rem);
+  min-width: 0;
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: clamp(3rem, 8vw, 8.4rem);
+  }
 }
 
 .lead {
@@ -50,7 +57,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  height: 42px;
+  min-height: 44px;
   padding: 0 16px;
   border: 1.5px solid var(--ink);
   border-radius: 999px;
@@ -83,8 +90,8 @@
 }
 
 .count {
-  font-size: 0.78rem;
-  opacity: 0.6;
+  font-size: 0.875rem;
+  opacity: 0.75;
 }
 
 .grid {
@@ -150,7 +157,7 @@
 
 .kind {
   margin: 0;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: var(--accent);
 }
@@ -181,7 +188,7 @@
   padding: 4px 11px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 

@@ -38,6 +38,7 @@
 
 .shell {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto minmax(0, 1fr) auto;
   height: 100%;
 }
@@ -201,7 +202,8 @@
 .body[data-fill="true"] {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .chat {
   display: flex;
@@ -215,7 +217,7 @@
   flex: 1;
   flex-direction: column;
   gap: 10px;
-  min-height: 0;
+  min-height: 96px;
   padding: 4px 2px 8px;
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -456,7 +458,8 @@
   white-space: nowrap;
 }
 
-@media (max-width: 640px) {
+/* móvil o pantalla baja (horizontal): el diálogo ocupa toda la pantalla */
+@media (max-width: 640px), (max-height: 480px) {
   .dialog {
     width: 100vw;
     max-width: 100vw;
@@ -482,5 +485,23 @@
   }
   .send {
     width: 100%;
+  }
+  .next,
+  .wa {
+    flex: 1;
+    min-width: 0;
+    height: auto;
+    min-height: 48px;
+    padding: 8px 16px;
+    white-space: normal;
+    text-align: center;
+  }
+  .back {
+    padding: 0 10px;
+  }
+}
+@media (max-height: 520px) {
+  .fine {
+    display: none;
   }
 }
