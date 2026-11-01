@@ -3,7 +3,7 @@
   position: relative;
   display: grid;
   gap: clamp(40px, 7dvh, 72px);
-  background: var(--paper-lo);
+  background: var(--paper);
   color: var(--ink);
   padding: clamp(80px, 13dvh, 140px) var(--gutter) clamp(64px, 10dvh, 110px);
   overflow: clip;
@@ -199,7 +199,7 @@
   padding: 22px 20px 56px;
   border: 1px solid var(--line);
   border-radius: 22px;
-  background: var(--paper-hi);
+  background: #fff;
   color: var(--ink);
   font: inherit;
   text-align: left;
@@ -216,7 +216,6 @@
   .price:hover {
     transform: translateY(-6px);
     border-color: var(--accent);
-    background: #f1f2f4;
   }
   .price:hover .go {
     transform: translateX(4px);
