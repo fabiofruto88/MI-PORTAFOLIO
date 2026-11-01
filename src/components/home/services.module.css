@@ -212,3 +212,22 @@
     max-width: 360px;
   }
 }
+
+/*
+ * Sin apilado en móvil ni en horizontal baja: el panel es más alto que la pantalla,
+ * así que con sticky el siguiente cubría la descripción antes de poder leerla.
+ * Fluyen en vertical y cada hoja redondeada solo monta 32px sobre el relleno del anterior.
+ */
+@media (max-width: 820px), (max-height: 699px) {
+  .panel {
+    position: relative;
+    min-height: 0;
+    padding-bottom: calc(var(--gutter) + 56px);
+  }
+  .panel + .panel {
+    margin-top: -32px;
+  }
+  .panel:last-of-type {
+    padding-bottom: calc(var(--gutter) + 32px);
+  }
+}

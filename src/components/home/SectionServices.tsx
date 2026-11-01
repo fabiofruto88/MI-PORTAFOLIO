@@ -22,6 +22,9 @@ const icons: { main: IconType; steps: IconType[] }[] = [
   { main: LuBot, steps: [LuMessagesSquare, LuBot, LuCheckCheck] },
 ];
 
+/** Mismo corte que services.module.css: en móvil y en horizontal baja el panel es más alto que la pantalla y no se apila. */
+const STACK_QUERY = "(min-width: 821px) and (min-height: 700px)";
+
 /**
  * Servicios. Escena: la sección llega como una tarjeta que sube y se abre
  * (scale + clip-path, receta de racing.porsche.com) y los cuatro servicios
@@ -35,6 +38,7 @@ export default function SectionServices() {
     () => {
       if (prefersReducedMotion()) return;
       const panels = gsap.utils.toArray<HTMLElement>("[data-panel]");
+      const mm = gsap.matchMedia();
 
       gsap.fromTo(
         root.current,
@@ -61,17 +65,22 @@ export default function SectionServices() {
           scrollTrigger: { trigger: panel, start: "top 70%", end: "top 15%", scrub: 1 },
         });
 
-        // el panel anterior se encoge cuando llega el siguiente
+        // el panel anterior se encoge cuando llega el siguiente (solo con el sticky-stack activo)
         if (i < panels.length - 1) {
-          gsap.to(panel, {
-            scale: 0.92,
-            ease: "none",
-            scrollTrigger: { trigger: panels[i + 1], start: "top bottom", end: "top top", scrub: true },
+          mm.add(STACK_QUERY, () => {
+            gsap.to(panel, {
+              scale: 0.92,
+              ease: "none",
+              scrollTrigger: { trigger: panels[i + 1], start: "top bottom", end: "top top", scrub: true },
+            });
           });
         }
       });
 
-      return () => splits.forEach((s) => s.revert());
+      return () => {
+        mm.revert();
+        splits.forEach((s) => s.revert());
+      };
     },
     { scope: root },
   );
