@@ -194,7 +194,7 @@ export const projectSummaries = [
     category: "Visión por computador",
     outcome:
       "Controla el acceso a un hospital por rostro y placa, con permisos distintos para médicos, personal y visitantes.",
-    featured: false,
+    featured: true,
     title: "MediSecure: control de acceso hospitalario",
     description:
       "Seguridad para hospitales con reconocimiento facial y LPR, roles de médicos, personal y visitantes.",
@@ -208,7 +208,7 @@ export const projectSummaries = [
     category: "Sitios web",
     outcome:
       "Presenta la marca de un restaurante de comida costeña y lleva al visitante a pedir por WhatsApp.",
-    featured: true,
+    featured: false,
     title: "Umami Landing: marca gastronómica",
     description:
       "Landing responsive enfocada en presentación de marca y conversión con React, TypeScript y Material UI.",
