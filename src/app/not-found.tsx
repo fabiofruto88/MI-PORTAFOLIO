@@ -7,6 +7,7 @@ import styles from "@/components/common/info.module.css";
 export const metadata: Metadata = {
   title: "Página no encontrada | Fabio Fruto Jimenez",
   robots: { index: false },
+  alternates: { canonical: null },
 };
 
 export default function NotFound() {

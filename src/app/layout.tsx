@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Archivo, Geist, Inter } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import SiteChrome from "@/components/layout/SiteChrome";
 
-import { generateSEO } from "@/lib/metadata";
+import { generateSEO, SITE_URL } from "@/lib/metadata";
 import { HOME } from "@/data/site";
 import { serializeJsonLd, siteJsonLd } from "@/lib/jsonld";
 import "./globals.css";
@@ -28,23 +28,29 @@ const geist = Geist({
   variable: "--font-geist",
 });
 
-export const metadata: Metadata = generateSEO({
-  title: HOME.title,
-  description:
-    "Desarrollador freelance en Barranquilla. Creo sitios web, apps móviles y automatizaciones con IA y te acompaño hasta publicarlos. Proyectos con demo y código.",
-  keywords: [
-    "desarrollador freelance Barranquilla",
-    "desarrollador web Barranquilla",
-    "crear página web para negocio",
-    "desarrollo de apps móviles Barranquilla",
-    "automatización con IA",
-    "landing page para restaurante",
-    "tienda en línea",
-    "desarrollador React Next.js",
-    "Fabio Fruto",
-  ],
-  url: "https://fabiofruto.com",
-});
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  ...generateSEO({
+    title: HOME.title,
+    description:
+      "Desarrollador freelance en Barranquilla. Creo sitios web, apps móviles y automatizaciones con IA y te acompaño hasta publicarlos. Proyectos con demo y código.",
+    keywords: [
+      "desarrollador freelance Barranquilla",
+      "desarrollador web Barranquilla",
+      "crear página web para negocio",
+      "desarrollo de apps móviles Barranquilla",
+      "automatización con IA",
+      "landing page para restaurante",
+      "tienda en línea",
+      "desarrollador React Next.js",
+      "Fabio Fruto",
+    ],
+  }),
+};
+
+export const viewport: Viewport = {
+  themeColor: "#d9dadc",
+};
 
 export default function RootLayout({
   children,

@@ -19,7 +19,6 @@ export function generateSEO({
   type = "website",
 }: SEOProps): Metadata {
   return {
-    metadataBase: new URL(SITE_URL),
     title,
     description,
     keywords,
